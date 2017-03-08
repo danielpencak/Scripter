@@ -4,6 +4,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <p className="screenplayFont">Hello</p>
       </div>
     );
   }

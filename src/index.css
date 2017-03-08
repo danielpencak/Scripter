@@ -1,5 +1,14 @@
+@font-face {
+  font-family: 'Courier Prime Code';
+  src: url('/assets/fonts/courierPrime/Courier Prime Code.ttf');
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  /*font-family: 'Courier Prime Code';*/
+}
+
+.screenplayFont {
+  font-family: "Courier Prime Code";
 }

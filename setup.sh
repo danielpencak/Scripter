@@ -1,6 +1,6 @@
-dropdb Scripter --if-exists
+dropdb Scripter_dev --if-exists
 
-createdb Scripter
+createdb Scripter_dev
 
 npm run knex migrate:latest
 
