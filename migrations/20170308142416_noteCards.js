@@ -9,7 +9,7 @@ exports.up = function(knex) {
       .references('projects.id')
       .onDelete('cascade')
       .notNullable();
-    table.text('note').notNullable();
+    table.text('note');
     table.timestamps(true, true);
   });
 };
