@@ -23,7 +23,9 @@ or a plugin which you want to reuse within your application
 // server.set('dataTransforms', [{
 //   topic: C.TOPIC.RPC,
 //   action: C.ACTIONS.REQUEST,
-//   transform: function(data, metaData) {}
+//   transform: function(data, metaData) {
+//     console.log('Deepstream Server');
+//   }
 // }]);
 
 // start the server
