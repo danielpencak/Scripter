@@ -8,8 +8,8 @@ const styleMap = {
   CODE: {
     backgroundColor: 'rgba(0, 0, 0, 0.05)',
     fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
-    fontSize: 16,
-    padding: 2,
+    fontSize: 12,
+    padding: 6,
   },
 };
 
@@ -87,18 +87,12 @@ const INLINE_STYLES = [
 ];
 
 const InlineStyleControls = (props) => {
-  console.log(props.editorState);
   const { editorState } = props;
   const selectionKey = editorState.getSelection().getStartKey();
-  // console.log(selectionKey);
   const hasBlockType = editorState
     .getCurrentContent()
     .getBlockForKey(selectionKey)
-  // console.log(hasBlockType);
-  // const blockType = hasBlockType ? hasBlockType.getType() : null;
-  // console.log(blockType);
   const currentStyle = hasBlockType ? editorState.getCurrentInlineStyle() : null;
-  console.log(currentStyle);
   return (
     <div className="RichEditor-controls">
       {INLINE_STYLES.map(type =>
@@ -206,20 +200,3 @@ const ScriptEditor = React.createClass({
 })
 
 export default ScriptEditor;
-// const styles = {
-//   root: {
-//     fontFamily: '\'Helvetica\', sans-serif',
-//     padding: 20,
-//     width: 600,
-//   },
-//   editor: {
-//     border: '1px solid #ccc',
-//     cursor: 'text',
-//     minHeight: 80,
-//     padding: 10,
-//   },
-//   button: {
-//     marginTop: 10,
-//     textAlign: 'center',
-//   },
-// };

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 // import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import Deepstream from '../Deepstream/Deepstream';
 import ScriptEditor from '../ScriptEditor/ScriptEditor';
 
 class App extends Component {
