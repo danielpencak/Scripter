@@ -58,23 +58,11 @@ const BLOCK_TYPES = [
 
 const BlockStyleControls = (props) => {
   const { editorState } = props;
-  console.log(props);
-  console.log('editorState', editorState);
   const selectionKey = editorState.getSelection().getStartKey();
-  // const selectionKey = selection.getStartKey();
-  console.log(selectionKey);
-  console.log('editorState', editorState.getCurrentContent());
   const hasBlockType = editorState
     .getCurrentContent()
     .getBlockForKey(selectionKey)
   const blockType = hasBlockType ? hasBlockType.getType() : null;
-
-  // if (block) {
-  //
-  // }
-    // .getType();
-
-  console.log('blockType', blockType);
 
   return (
     <div className="RichEditor-controls">
@@ -99,15 +87,24 @@ const INLINE_STYLES = [
 ];
 
 const InlineStyleControls = (props) => {
-  // console.log('inline props', props);
-  // console.log('currentStyle', props.editorState);
-  // var currentStyle = props.editorState.getCurrentInlineStyle();
+  console.log(props.editorState);
+  const { editorState } = props;
+  const selectionKey = editorState.getSelection().getStartKey();
+  // console.log(selectionKey);
+  const hasBlockType = editorState
+    .getCurrentContent()
+    .getBlockForKey(selectionKey)
+  // console.log(hasBlockType);
+  // const blockType = hasBlockType ? hasBlockType.getType() : null;
+  // console.log(blockType);
+  const currentStyle = hasBlockType ? editorState.getCurrentInlineStyle() : null;
+  console.log(currentStyle);
   return (
     <div className="RichEditor-controls">
       {INLINE_STYLES.map(type =>
         <StyleButton
           key={type.label}
-          active={true}
+          active={currentStyle ? currentStyle.has(type.style) : false}
           label={type.label}
           onToggle={props.onToggle}
           style={type.style}
@@ -136,7 +133,6 @@ const ScriptEditor = React.createClass({
   },
 
   handleKeyCommand(editorState, command) {
-    // const {editorState} = this.state;
     const newState = RichUtils.handleKeyCommand(editorState, command);
     if (newState) {
       this.onChange(newState);
@@ -149,8 +145,6 @@ const ScriptEditor = React.createClass({
     this.onChange(RichUtils.onTab(e, editorState, maxDepth));
   },
   toggleBlockType(editorState, blockType) {
-    console.log(blockType);
-    console.log(editorState);
     this.onChange(
       RichUtils.toggleBlockType(editorState, blockType)
     );
@@ -182,21 +176,17 @@ const ScriptEditor = React.createClass({
     const newEditor = EditorState.createWithContent(convertFromRaw(this.state.raw))
     // Apply the locally saved SelectionState to the newly created EditorState
     const withSelection = EditorState.acceptSelection(newEditor, this.state.local.selection)
-    console.log(this.state.local.selection.getStartKey());
-    console.log(withSelection.getSelection().getStartKey());
-    console.log(newEditor, withSelection.getCurrentContent().getBlockForKey(withSelection.getSelection().getAnchorKey()));
 
     return (
       <div>
         <BlockStyleControls
           editorState={withSelection}
-          selection={this.state.local.selection}
           onToggle={this.toggleBlockType.bind(null, withSelection)}
         />
-        {/* <InlineStyleControls
+        <InlineStyleControls
           editorState={withSelection}
           onToggle={this.toggleInlineStyle.bind(null, withSelection)}
-        /> */}
+        />
         <div onClick={this.focus}>
           <Editor
             editorState={withSelection}
