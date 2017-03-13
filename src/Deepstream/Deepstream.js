@@ -9,12 +9,12 @@ const Deepstream = React.createClass({
   getInitialState() {
     return {
       // value: '',
-      value: convertToRaw(ContentState.createFromText('hello world'))
+      value: convertToRaw(ContentState.createFromText(''))
     }
   },
 	mixins: [ DeepstreamMixin ],
   onChangeDeep: function(editorState) {
-    console.log('ed',convertToRaw(editorState));
+    // console.log('ed',convertToRaw(editorState));
     this.setState({ value: convertToRaw(editorState) });
   },
 	render: function() {
