@@ -3,6 +3,10 @@
   src: url('/assets/fonts/courierPrime/Courier Prime Code.ttf');
 }
 
+html, body, #root {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;

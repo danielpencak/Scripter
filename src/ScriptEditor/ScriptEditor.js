@@ -15,7 +15,14 @@ const styleMap = {
 
 function getBlockStyle(block) {
   switch (block.getType()) {
-    case 'blockquote': return 'RichEditor-blockquote';
+    case 'blockquote': return 'RichEditor-direction';
+    case 'header-one': return 'RichEditor-shotHeading';
+    case 'header-two': return 'RichEditor-fadeIn';
+    case 'header-three': return 'RichEditor-transition';
+    case 'header-four': return 'RichEditor-dialogue';
+    case 'header-five': return 'RichEditor-characterName';
+    case 'header-six': return 'RichEditor-parenthetical';
+    case 'code-block': return 'RichEditor-pageNumber'
     default: return null;
   }
 }
@@ -44,16 +51,16 @@ class StyleButton extends React.Component {
 }
 
 const BLOCK_TYPES = [
-  {label: 'H1', style: 'header-one'},
-  {label: 'H2', style: 'header-two'},
-  {label: 'H3', style: 'header-three'},
-  {label: 'H4', style: 'header-four'},
-  {label: 'H5', style: 'header-five'},
-  {label: 'H6', style: 'header-six'},
-  {label: 'Blockquote', style: 'blockquote'},
-  {label: 'UL', style: 'unordered-list-item'},
-  {label: 'OL', style: 'ordered-list-item'},
-  {label: 'Code Block', style: 'code-block'},
+  {label: 'Shot Heading', style: 'header-one'},
+  {label: 'FADE IN:', style: 'header-two'},
+  {label: 'Transition', style: 'header-three'},
+  {label: 'Dialogue', style: 'header-four'},
+  {label: 'Character Name', style: 'header-five'},
+  {label: 'Parenthetical', style: 'header-six'},
+  {label: 'Direction', style: 'blockquote'},
+  // {label: 'UL', style: 'unordered-list-item'},
+  // {label: 'OL', style: 'ordered-list-item'},
+  {label: 'Page Number', style: 'code-block'},
 ];
 
 const BlockStyleControls = (props) => {
@@ -172,26 +179,27 @@ const ScriptEditor = React.createClass({
     const withSelection = EditorState.acceptSelection(newEditor, this.state.local.selection)
 
     return (
-      <div>
+      <div className="RichEditor-root">
         <BlockStyleControls
           editorState={withSelection}
           onToggle={this.toggleBlockType.bind(null, withSelection)}
         />
-        <InlineStyleControls
+        {/* <InlineStyleControls
           editorState={withSelection}
           onToggle={this.toggleInlineStyle.bind(null, withSelection)}
-        />
+        /> */}
         <div onClick={this.focus}>
           <Editor
             editorState={withSelection}
             onChange={this.onChange}
-            placeholder="Enter some text..."
+            // placeholder="Enter some text..."
             ref="editor"
             spellCheck={true}
             onTab={this.onTab.bind(null, withSelection)}
             handleKeyCommand={this.handleKeyCommand.bind(null, withSelection)}
             customStyleMap={styleMap}
             blockStyleFn={getBlockStyle}
+            className="Editor"
           />
         </div>
       </div>
