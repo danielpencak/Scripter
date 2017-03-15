@@ -1,8 +1,11 @@
 import React from 'react';
-import { RichUtils, Editor, EditorState, convertFromRaw, convertToRaw, ContentState } from 'draft-js';
+import { RichUtils, Editor, EditorState, convertFromRaw, convertToRaw, ContentState, convertFromHTML, convertToHTML } from 'draft-js';
 import './ScriptEditor.css';
 import DeepstreamMixin from 'deepstream.io-tools-react';
+import { stateToHTML } from 'draft-js-export-html';
+import { stateFromHTML } from 'draft-js-import-html';
 
+let pageCount = 1;
 // Custom overrides for "code" style.
 const styleMap = {
   CODE: {
@@ -86,6 +89,7 @@ const BlockStyleControls = (props) => {
   );
 };
 
+
 const INLINE_STYLES = [
   {label: 'Bold', style: 'BOLD'},
   {label: 'Italic', style: 'ITALIC'},
@@ -159,6 +163,44 @@ const ScriptEditor = React.createClass({
   onChange(newEditorState) {
     // We need to persist the raw content in deepstream,
     // but save the current selection locally
+    const page = 1056 - 96;
+    const measure = document.getElementsByClassName('public-DraftEditor-content')[0].clientHeight;
+    console.log(measure);
+    // const pageBreak = convertFromHTML('<p>Hello</p>');
+    // const pageBreakContentState = stateFromHTML('<hr>');
+    // const pageBreakBlock = ContentState.createFromBlockArray(
+    //   pageBreak.contentBlocks,
+    //   pageBreak.entityMap
+    // );
+    // console.log(pageBreakBlock);
+    // pageCount = 1;
+    console.log(pageCount);
+
+    if (measure > pageCount * page) {
+      // console.log(pageCount);
+      const endKey = newEditorState.getSelection().getEndKey();
+      EditorState.moveFocusToEnd(newEditorState);
+      let currentHTML = stateToHTML(newEditorState.getCurrentContent());
+      currentHTML = currentHTML + '<p>PAGE BREAK</p><p>PAGE BREAK</p><p>PAGE BREAK</p><p>PAGE BREAK</p><p>PAGE BREAK</p><p>PAGE BREAK</p>';
+      const contentState = stateFromHTML(currentHTML);
+      newEditorState = EditorState.push(newEditorState, contentState, 'insert-fragment');
+      const rawState = convertToRaw(newEditorState.getCurrentContent())
+      console.log(pageCount);
+      pageCount += 1;
+      // this.setState({
+      //   raw: convertToRaw(editorStateWithBreak.getCurrentContent()),
+      //   local: {
+      //     selection: editorStateWithBreak.getSelection()
+      //   }
+      // })
+      // console.log(pageCount);
+    }
+    // else if (pageCount > 0) {
+      // else if (measure < page * pageCount - 1) {
+      //   pageCount -= 1;
+      //   console.log(pageCount);
+      // }
+    // }
     this.setState({
       raw: convertToRaw(newEditorState.getCurrentContent()),
       local: {
@@ -179,28 +221,31 @@ const ScriptEditor = React.createClass({
     const withSelection = EditorState.acceptSelection(newEditor, this.state.local.selection)
 
     return (
-      <div className="RichEditor-root">
-        <BlockStyleControls
-          editorState={withSelection}
-          onToggle={this.toggleBlockType.bind(null, withSelection)}
-        />
-        {/* <InlineStyleControls
-          editorState={withSelection}
-          onToggle={this.toggleInlineStyle.bind(null, withSelection)}
-        /> */}
-        <div onClick={this.focus}>
-          <Editor
+      <div className="ScriptEditor">
+        <div className="RichEditor-root">
+          <BlockStyleControls
             editorState={withSelection}
-            onChange={this.onChange}
-            // placeholder="Enter some text..."
-            ref="editor"
-            spellCheck={true}
-            onTab={this.onTab.bind(null, withSelection)}
-            handleKeyCommand={this.handleKeyCommand.bind(null, withSelection)}
-            customStyleMap={styleMap}
-            blockStyleFn={getBlockStyle}
-            className="Editor"
+            onToggle={this.toggleBlockType.bind(null, withSelection)}
           />
+          {/* <InlineStyleControls
+            editorState={withSelection}
+            onToggle={this.toggleInlineStyle.bind(null, withSelection)}
+          /> */}
+          <div onClick={this.focus}>
+            <Editor
+              editorState={withSelection}
+              onChange={this.onChange}
+              // placeholder="Enter some text..."
+              ref="editor"
+              spellCheck={true}
+              onTab={this.onTab.bind(null, withSelection)}
+              handleKeyCommand={this.handleKeyCommand.bind(null, withSelection)}
+              customStyleMap={styleMap}
+              blockStyleFn={getBlockStyle}
+              className="Editor"
+              id="editor"
+            />
+          </div>
         </div>
       </div>
     )

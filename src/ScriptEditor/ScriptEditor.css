@@ -87,8 +87,8 @@
 }
 
 .RichEditor-root .DraftEditor-root {
-  min-height: 1056px;
-  max-height: 1056px;
+  /*min-height: 1056px;*/
+  /*max-height: 1056px;*/
   width: 8.5in;
   /*padding-top: 30px;*/
   /*padding-bottom: 60px;*/
@@ -101,6 +101,10 @@
   /*font-weight: normal;*/
   /*font-size: 16px;*/
   /*margin-top: 10px;*/
+}
+
+.public-DraftStyleDefault-block.public-DraftStyleDefault-ltr span {
+  background-color: white !important;
 }
 
 /*.RichEditor-editor .public-DraftEditorPlaceholder-root,
@@ -124,7 +128,7 @@
 
 .RichEditor-direction {
   /*border-left: 5px solid #eee;*/
-  color: #666;
+  /*color: #666;*/
   /*font-family: "Courier Prime Code";*/
   /*font-style: italic;*/
   margin-left: 163.2px;
@@ -137,7 +141,7 @@
 
 .RichEditor-pageNumber {
   /*border-left: 5px solid #eee;*/
-  color: #666;
+  /*color: #666;*/
   /*font-family: "Courier Prime Code";*/
   /*font-style: italic;*/
   margin-top: 48px;
@@ -182,8 +186,20 @@
 
 .public-DraftEditor-content {
   border: 1px solid black;
+  /*min-height: 1056px;*/
   /*padding-top: 48px;*/
   /*padding-bottom: 60px;*/
+}
+
+.RichEditor-root {
+  width: 8.5in;
+  height: 100%;
+}
+
+.ScriptEditor {
+  display: flex;
+  /*align-items: center;*/
+  justify-content: center;
 }
 
 

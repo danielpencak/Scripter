@@ -20,6 +20,8 @@
     "deepstream.io-tools-react": "^0.1.5",
     "dotenv": "^4.0.0",
     "draft-js": "^0.10.0",
+    "draft-js-export-html": "^0.5.2",
+    "draft-js-import-html": "^0.3.2",
     "express": "^4.15.2",
     "express-validation": "^1.0.1",
     "humps": "^2.0.0",
