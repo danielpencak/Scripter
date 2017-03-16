@@ -4740,6 +4740,10 @@ react-overlays@^0.6.12:
     react-prop-types "^0.4.0"
     warning "^3.0.0"
 
+react-page-div@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/react-page-div/-/react-page-div-0.0.3.tgz#a1e74a200f44efe765509ed73a8543f958e2fe76"
+
 react-prop-types@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/react-prop-types/-/react-prop-types-0.4.0.tgz#f99b0bfb4006929c9af2051e7c1414a5c75b93d0"
