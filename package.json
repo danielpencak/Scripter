@@ -27,6 +27,7 @@
     "draft-js-toolbars": "^0.0.1",
     "express": "^4.15.2",
     "express-validation": "^1.0.1",
+    "foreman": "^2.0.0",
     "humps": "^2.0.0",
     "joi": "^10.2.2",
     "jsonwebtoken": "^7.3.0",
@@ -43,6 +44,8 @@
   },
   "scripts": {
     "knex": "knex",
+    "heroku-postbuild": "knex migrate:latest",
+    "nf": "nf start",
     "start": "react-scripts start & nodemon --watch server/ server/bin/www",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
