@@ -209,7 +209,7 @@
 
 .public-DraftEditor-content {
   border: 1px solid black;
-  /*min-height: 11in;*/
+  min-height: 11in;
   /*padding-top: 48px;*/
   /*padding-bottom: 60px;*/
 }

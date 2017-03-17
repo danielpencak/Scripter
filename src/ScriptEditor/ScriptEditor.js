@@ -53,48 +53,48 @@ function addPageBreaks(editorState) {
   const elements = dataOffsetKeys.map(key => {
     return document.querySelector(`div[data-offset-key="${key}-0-0"]`);
   });
-    for (let i = 0; i < elements.length; i++) {
-      // console.log(pageCount);
-      if (elements[i] === null) {
-        blockHeight += 0;
+
+  for (let i = 0; i < elements.length; i++) {
+    if (elements[i] === null) {
+      blockHeight += 0;
+    }
+    else {
+      if (elements[i].parentElement.className === 'RichEditor-transition') {
+        blockHeight += 32 + elements[i].clientHeight;
+      }
+      else if (elements[i].parentElement.className === 'RichEditor-shotHeading') {
+        blockHeight += 48 + elements[i].clientHeight;
+      }
+      else if (elements[i].parentElement.className === 'RichEditor-direction') {
+        blockHeight += 32 + elements[i].clientHeight;
+      }
+      else if (elements[i].parentElement.className === 'RichEditor-fadeIn') {
+        blockHeight += 112 + elements[i].clientHeight;
+      }
+      else if (elements[i].parentElement.className === 'RichEditor-dialogue') {
+        blockHeight += 16 + elements[i].clientHeight;
       }
       else {
-        if (elements[i].parentElement.className === 'RichEditor-transition') {
-          blockHeight += 48;
-        }
-        else if (elements[i].parentElement.className === 'RichEditor-shotHeading') {
-          blockHeight += 64;
-        }
-        else if (elements[i].parentElement.className === 'RichEditor-direction') {
-          blockHeight += 48;
-        }
-        else if (elements[i].parentElement.className === 'RichEditor-fadeIn') {
-          blockHeight += 128;
-        }
-        else if (elements[i].parentElement.className === 'RichEditor-dialogue') {
-          blockHeight += 32;
-        }
-        else {
-          blockHeight += 16;
-        }
-      }
-      if (blockHeight > pageCount * pageLength) {
-        const pageBreakBlock = new ContentBlock({
-          key: genKey(),
-          type: 'atomic',
-          text: '',
-          // characterList: List()
-        })
-        const contentState = newEditorState.getCurrentContent();
-        const blocks = contentState.getBlocksAsArray();
-        const leftHalfBlocks = blocks.slice(0, i).concat(pageBreakBlock);
-        const rightHalfBlocks = blocks.slice(i);
-        const blocksWithPageBreaks = leftHalfBlocks.concat(rightHalfBlocks);
-        const newContentState = ContentState.createFromBlockArray(blocksWithPageBreaks);
-        newEditorState = EditorState.createWithContent(newContentState);
-        pageCount += 1;
+        blockHeight += 16;
       }
     }
+    if (blockHeight > pageCount * pageLength) {
+      const pageBreakBlock = new ContentBlock({
+        key: genKey(),
+        type: 'atomic',
+        text: '',
+        // characterList: List()
+      })
+      const contentState = newEditorState.getCurrentContent();
+      const blocks = contentState.getBlocksAsArray();
+      const leftHalfBlocks = blocks.slice(0, i).concat(pageBreakBlock);
+      const rightHalfBlocks = blocks.slice(i);
+      const blocksWithPageBreaks = leftHalfBlocks.concat(rightHalfBlocks);
+      const newContentState = ContentState.createFromBlockArray(blocksWithPageBreaks);
+      newEditorState = EditorState.createWithContent(newContentState);
+      pageCount += 1;
+    }
+  }
   return newEditorState;
 }
 
