@@ -6,7 +6,7 @@
   /*padding: 15px;*/
   display: flex;
   flex-direction: column;
-  /*justify-content: center;*/
+  /*justify-content: flex-start;*/
   align-items: center;
   /*max-width: 660px;*/
   height: 100%;
@@ -183,9 +183,15 @@
   margin-bottom: 5px;
   user-select: none;
   display: flex;
-  justify-content: center;
+  position: fixed;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   min-height: 50px;
+  background-color: white;
+  width: 150px;
+  height: 400px;
+  border: 2px solid black;
 }
 
 .RichEditor-styleButton {
@@ -194,6 +200,7 @@
   margin-right: 16px;
   padding: 2px 0;
   display: inline-block;
+
 }
 
 .RichEditor-activeButton {
@@ -202,7 +209,7 @@
 
 .public-DraftEditor-content {
   border: 1px solid black;
-  /*min-height: 1056px;*/
+  /*min-height: 11in;*/
   /*padding-top: 48px;*/
   /*padding-bottom: 60px;*/
 }
@@ -216,6 +223,12 @@
   display: flex;
   /*align-items: center;*/
   justify-content: center;
+}
+
+.ScriptEditor .controls {
+  display: flex;
+  align-items: flex-start;
+  width: 1150px;
 }
 
 

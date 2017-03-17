@@ -1,7 +1,14 @@
 import React from 'react';
-import { RichUtils, Editor, EditorState, convertFromRaw, convertToRaw, ContentState, genKey, ContentBlock } from 'draft-js';
+import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
+import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
+import { RichUtils, EditorState, convertFromRaw, convertToRaw, ContentState, genKey, ContentBlock } from 'draft-js';
 import './ScriptEditor.css';
+import '../../node_modules/draft-js-side-toolbar-plugin/lib/plugin.css'; // eslint-disable-line import/no-unresolved
 import DeepstreamMixin from 'deepstream.io-tools-react';
+
+const sideToolbarPlugin = createSideToolbarPlugin();
+const { SideToolbar } = sideToolbarPlugin;
+const plugins = [sideToolbarPlugin];
 
 // Custom overrides for "code" style.
 // const styleMap = {
@@ -41,7 +48,7 @@ function addPageBreaks(editorState) {
   let newEditorState = removePageBreaks(editorState);
   let blockHeight = 0;
   let pageCount = 1;
-  const pageLength = 600;
+  const pageLength = 1056;
   const dataOffsetKeys = getDataOffsetKeys(newEditorState);
   const elements = dataOffsetKeys.map(key => {
     return document.querySelector(`div[data-offset-key="${key}-0-0"]`);
@@ -261,29 +268,33 @@ const ScriptEditor = React.createClass({
     return (
       <div className="ScriptEditor">
         <div className="RichEditor-root">
-          <BlockStyleControls
-            editorState={withSelection}
-            onToggle={this.toggleBlockType.bind(null, withSelection)}
-          />
+          <div className="controls">
+            <BlockStyleControls
+              editorState={withSelection}
+              onToggle={this.toggleBlockType.bind(null, withSelection)}
+            />
+          </div>
           {/* <InlineStyleControls
             editorState={withSelection}
             onToggle={this.toggleInlineStyle.bind(null, withSelection)}
           /> */}
-            <div onClick={this.focus}>
-              <Editor
-                editorState={withSelection}
-                onChange={this.onChange}
-                // placeholder="Enter some text..."
-                ref="editor"
-                spellCheck={true}
-                onTab={this.onTab.bind(null, withSelection)}
-                handleKeyCommand={this.handleKeyCommand.bind(null, withSelection)}
-                // customStyleMap={styleMap}
-                blockStyleFn={getBlockStyle}
-                className="Editor"
-                id="editor"
-              />
-            </div>
+          <div onClick={this.focus}>
+            <Editor
+              editorState={withSelection}
+              onChange={this.onChange}
+              // placeholder="Enter some text..."
+              ref="editor"
+              spellCheck={true}
+              onTab={this.onTab.bind(null, withSelection)}
+              handleKeyCommand={this.handleKeyCommand.bind(null, withSelection)}
+              // customStyleMap={styleMap}
+              blockStyleFn={getBlockStyle}
+              className="Editor"
+              id="editor"
+              plugins={plugins}
+            />
+            {/* <SideToolbar /> */}
+          </div>
         </div>
       </div>
     )
