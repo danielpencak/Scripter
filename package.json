@@ -46,6 +46,7 @@
     "knex": "knex",
     "nf": "nf start",
     "start": "react-scripts start & nodemon --watch server/ server/bin/www",
+    "deepStart": "deepstream start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
