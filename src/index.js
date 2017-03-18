@@ -5,8 +5,7 @@ import './index.css';
 import deepstreamClient from 'deepstream.io-client-js';
 import DeepstreamMixin from 'deepstream.io-tools-react';
 
-console.log(process.env.PORT);
-const client = deepstreamClient( `danielpencak-scripter.herokuapp.com:${process.env.PORT}` ).login({}, function(){
+const client = deepstreamClient( `danielpencak-deepstream.herokuapp.com:80` ).login({}, function(){
   ReactDOM.render(
     <App />,
     document.getElementById('root')
