@@ -6,8 +6,8 @@ import deepstreamClient from 'deepstream.io-client-js';
 import DeepstreamMixin from 'deepstream.io-tools-react';
 
 // TODO: set deepstream url programtically localhost or danielpencak-deepstream.herokuapp.com:80
-const DS_URL = 'danielpencak-deepstream.herokuapp.com:80'
-// const DS_URL = 'localhost:6020'
+// const DS_URL = 'danielpencak-deepstream.herokuapp.com:80'
+const DS_URL = 'localhost:6020'
 
 const client = deepstreamClient( DS_URL ).login({}, function(){
   ReactDOM.render(
