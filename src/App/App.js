@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
-// import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import ScriptEditor from '../ScriptEditor/ScriptEditor';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import Home from '../Home/Home';
+import ProjectDashboard from '../ProjectDashboard/ProjectDashboard';
+import CreateProject from '../CreateProject/CreateProject';
+import Parent from '../Parent/Parent';
+import UserDashboard from '../UserDashboard/UserDashboard';
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
-      <ScriptEditor dsRecord="script"/>
-      // <ScriptEditor dsRecord="script"/>
-      // <Router history={browserHistory}>
-      //   <Route path='/' component={Parent}>
-      //     {/* <IndexRoute component={Home} /> */}
-      //   </Route>
-      // </Router>
+      <Router history={browserHistory}>
+        <Route path='/' component={Parent}>
+          <IndexRoute component={Home} />
+          <Route path='/dashboard/:userId' component={UserDashboard} />
+          <Route path='/project/create' component={CreateProject} />
+          <Route path='/project/:projectId' component={ProjectDashboard} />
+        </Route>
+      </Router>
     );
   }
 }
-
-export default App;
