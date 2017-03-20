@@ -1,0 +1,63 @@
+.modal-body {
+  padding: 30px;
+}
+
+.modal-body h2 {
+  font-family: 'Courier Prime Code';
+  color: #444;
+  letter-spacing: 2px;
+  text-align: center;
+  margin: 0 0 30px 0;
+}
+
+.modal-body .buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.modal-body .buttons button {
+  background-color: #A8DAEF;
+  border-color: #A8DAEF;
+}
+
+.modal-body a, .modal-body button {
+  border: 1px solid #DDD;
+  border-radius: 5px;
+  background-color: #F8F8F8;
+  padding: 10px 20px;
+}
+
+.modal-body a:hover, .modal-body button:hover {
+  transform: scale(1.1);
+  text-decoration: none;
+}
+
+.modal-body a {
+  margin-right: 10px;
+  color: black;
+  cursor: pointer;
+}
+
+.modal-body input, .modal-body textarea {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #CCC;
+  border-radius: 3px 3px 0 0;
+}
+
+.modal-body .row {
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+}
+
+.modal-body .form-error {
+  width: 100%;
+  text-align: center;
+  background-color: #F44336;
+  color: white;
+  display: block;
+  padding: 5px 0;
+  border-radius: 0 0 3px 3px;
+}

@@ -1,0 +1,53 @@
+.UserHeader {
+  /*height: 70px;*/
+  cursor: pointer;
+}
+
+.UserHeader .userIcon {
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*height: 70px;*/
+  font-size: 20px;
+}
+
+.UserHeader img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #DDD;
+}
+
+.UserHeader img:hover {
+  background-color: white;
+  border: 1px solid #DDD;
+}
+
+.UserHeader .name {
+  margin-right: 10px;
+  color: #666;
+  font-weight: 200;
+}
+
+.UserHeader .logOut {
+  position: absolute;
+  z-index: 99;
+  width: 100%;
+  padding: 10px 20px;
+  color: white;
+  font-size: 16px;
+  border-radius: 0;
+}
+
+.UserHeader .logOut:hover {
+  transform: scale(1.01);
+}
+
+.UserHeader a {
+  color: black;
+}
+
+.UserHeader li {
+  text-align: left;
+}

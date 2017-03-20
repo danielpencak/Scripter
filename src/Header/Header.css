@@ -1,0 +1,59 @@
+.Header {
+  border-radius: 0;
+  margin: 0;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 20px;
+  border-bottom: 1px solid #CCC;
+  background-color: white;
+}
+
+.Header a {
+  color: #333;
+  font-size: 28px;
+  letter-spacing: 1px;
+  font-family: 'Courier Prime Code';
+  text-decoration: none;
+  padding-top: 3px;
+}
+
+.Header a:hover {
+  transform: scale(1.05);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.Header .account {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.Header .container::before, .Header .container::after {
+  display: none;
+}
+
+.Header .loginButtons {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.Header .loginButtons button {
+  border: 1px solid #DDD;
+  border-radius: 5px;
+  background-color: #F8F8F8;
+  padding: 10px 20px;
+  margin-right: 10px;
+}
+
+.Header .loginButtons button:hover {
+  transform: scale(1.1);
+  background-color: #A8DAEF;
+  border-color: white;
+  cursor: pointer;
+}

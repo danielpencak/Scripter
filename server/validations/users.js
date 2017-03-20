@@ -23,4 +23,4 @@ module.exports.post = {
       .min(8)
       .required()
   }
-}
+};
