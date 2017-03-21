@@ -1,0 +1,25 @@
+.ProjectCard {
+  border: 1px solid #CCC;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+  width: 200px;
+  flex-wrap: wrap;
+  margin: 10px;
+  padding: 10px;
+  background-color: #BBB;
+  color: white;
+  box-shadow: 1px 4px 5px #999;
+}
+
+.ProjectCard h2 {
+  margin: 0;
+  /*font-size: 1.3vw;*/
+  font-size: 22px;
+}
+
+.ProjectCard h3 {
+  font-size: 19px;
+}

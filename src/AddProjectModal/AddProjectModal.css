@@ -2,6 +2,10 @@
   padding: 30px;
 }
 
+.modal-body label {
+  padding: 0;
+}
+
 .modal-body h2 {
   font-family: 'Courier Prime Code';
   color: #444;

@@ -1,0 +1,11 @@
+.UserCard {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 20px;
+  border-bottom: 1px solid #CCC;
+}
+
+.UserCard h3 {
+  margin: 0;
+}

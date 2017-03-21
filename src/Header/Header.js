@@ -6,7 +6,7 @@ import UserHeader from '../UserHeader/UserHeader';
 export default function Header(props) {
   return (
     <nav className="Header">
-      <Link to={props.userId ? `/dashboard/${props.userId}` : '/'}>Scripter</Link>
+      <Link to={props.userId ? `/dashboard` : '/'}>Scripter</Link>
          {
           props.userId
           ?

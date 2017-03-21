@@ -44,7 +44,7 @@ export default class Parent extends Component {
     event.preventDefault();
     axios.post('/api/token', { email: this.state.loginEmail, password: this.state.loginPassword })
       .then(res => {
-        const { id, firstName, lastName, image } = res.data;
+        const { id, firstName, lastName, image, bio } = res.data;
         this.setState({
           userId: id,
           firstName,
@@ -52,9 +52,10 @@ export default class Parent extends Component {
           loginModalOpen: false,
           loginEmail: '',
           loginPassword: '',
-          userImage: image
+          userImage: image,
+          userBio: bio
         })
-        browserHistory.push(`/dashboard/${id}`);
+        browserHistory.push(`/dashboard`);
       })
       .catch(err => {
         console.log(err);
@@ -72,7 +73,7 @@ export default class Parent extends Component {
       image: this.state.signupUserImage
     })
     .then(res => {
-      const { id, firstName, lastName, image } = res.data;
+      const { id, firstName, lastName, image, bio } = res.data;
       this.setState({
         userId: id,
         userImage: image,
@@ -81,9 +82,10 @@ export default class Parent extends Component {
         signupModalOpen: false,
         signupEmail: '',
         signupPassword: '',
-        signupConfirmPassword: ''
+        signupConfirmPassword: '',
+        userBio: bio
       })
-      browserHistory.push(`/dashboard/${id}`);
+      browserHistory.push(`/dashboard`);
     })
     .catch(err => {
       console.log(err);
@@ -116,11 +118,11 @@ export default class Parent extends Component {
           firstName,
           lastName
         })
-        // return axios.get(`/api/users/${this.state.userId}/projects`)
+        return axios.get(`/api/projects`)
       })
-      // .then(({ data }) => {
-      //   this.setState({ userProjects: data });
-      // })
+      .then(({ data }) => {
+        this.setState({ userProjects: data });
+      })
       .catch(err => {
         console.log(err);
       })
@@ -129,9 +131,20 @@ export default class Parent extends Component {
   render() {
     return (
       <div className="Parent">
-        <Header userId={this.state.userId} toggleModal={this.toggleModal} firstName={this.state.firstName} lastName={this.state.lastName} handleLogout={this.handleLogout} />
+        <Header userId={this.state.userId}
+          toggleModal={this.toggleModal}
+          firstName={this.state.firstName}
+          lastName={this.state.lastName}
+          handleLogout={this.handleLogout} />
         <div className="page">
-          {React.cloneElement(this.props.children, { userId: this.state.userId, firstName: this.state.firstName, lastName: this.state.lastName, userProjects: this.state.userProjects })}
+          {React.cloneElement(this.props.children,
+            {
+              userId: this.state.userId,
+              firstName: this.state.firstName,
+              lastName: this.state.lastName,
+              userProjects: this.state.userProjects,
+              handleAddProjectSubmit: this.handleAddProjectSubmit
+            })}
         </div>
         {
           this.state.loginModalOpen

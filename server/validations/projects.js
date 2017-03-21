@@ -9,4 +9,13 @@ module.exports.post = {
       .trim()
       .required()
   }
-}
+};
+
+module.exports.patch = {
+  body: {
+    name: Joi.string()
+      .label('Project Name')
+      .trim()
+      .required()
+  }
+};

@@ -12,7 +12,7 @@ export default class App extends Component {
       <Router history={browserHistory}>
         <Route path='/' component={Parent}>
           <IndexRoute component={Home} />
-          <Route path='/dashboard/:userId' component={UserDashboard} />
+          <Route path='/dashboard' component={UserDashboard} />
           <Route path='/project/create' component={CreateProject} />
           <Route path='/project/:projectId' component={ProjectDashboard} />
         </Route>
