@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Grid, Row, Col, Glyphicon } from 'react-bootstrap';
 import './UserDashboard.css';
-import { Link, browserHistory } from 'react-router';
+import { Link } from 'react-router';
 import ProjectCard from '../ProjectCard/ProjectCard';
 import UserCard from '../UserCard/UserCard';
 import AddProjectModal from '../AddProjectModal/AddProjectModal';
@@ -24,7 +24,6 @@ export default class UserDashboard extends Component {
   componentDidMount() {
     axios.get('/api/projects/collaborators')
       .then(({ data }) => {
-        console.log(data);
         this.setState({ collaborators: data });
       })
       .catch(err => {

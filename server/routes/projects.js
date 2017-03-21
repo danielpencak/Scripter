@@ -21,7 +21,6 @@ router.get('/', authorize, (req, res, next) => {
     .innerJoin('users_projects', 'users_projects.project_id', 'projects.id')
     .where('users_projects.user_id', req.claim.userId)
     .then(projects => {
-      console.log(projects);
       userProjects = camelizeKeys(projects);
 
       return knex('projects')

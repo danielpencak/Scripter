@@ -1,10 +1,9 @@
 import React from 'react';
 import './ProjectCard.css'
 import moment from 'moment'
-import { Glyphicon } from 'react-bootstrap';
 
 export default function ProjectCard(props) {
-  const { projectName, projectId, projectCreatedAt, projectUpdatedAt } = props;
+  const { projectName, projectCreatedAt } = props;
   return(
     <div className="ProjectCard">
       <div>

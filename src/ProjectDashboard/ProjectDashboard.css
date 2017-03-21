@@ -2,4 +2,19 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow: scroll;
+}
+
+.container {
+  margin: 0 0 0 150px;
+}
+
+.ProjectDashboard .scriptEditor {
+  padding: 0;
+  height: 100%;
+  padding: 20px;
+}
+
+.collaborators {
+  border-left: 1px solid #CCC;
 }

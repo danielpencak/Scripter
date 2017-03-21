@@ -1,6 +1,5 @@
 import React from 'react';
 import './UserCard.css';
-import { Glyphicon } from 'react-bootstrap';
 
 export default function UserCard(props) {
   return (

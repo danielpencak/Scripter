@@ -1,14 +1,14 @@
 import React from 'react';
-import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
-import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
-import { RichUtils, EditorState, convertFromRaw, convertToRaw, ContentState, genKey, ContentBlock } from 'draft-js';
+// import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
+// import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
+import { RichUtils, Editor, EditorState, convertFromRaw, convertToRaw, ContentState, genKey, ContentBlock } from 'draft-js';
 import './ScriptEditor.css';
 import '../../node_modules/draft-js-side-toolbar-plugin/lib/plugin.css'; // eslint-disable-line import/no-unresolved
 import DeepstreamMixin from 'deepstream.io-tools-react';
 
-const sideToolbarPlugin = createSideToolbarPlugin();
-const { SideToolbar } = sideToolbarPlugin;
-const plugins = [sideToolbarPlugin];
+// const sideToolbarPlugin = createSideToolbarPlugin();
+// const { SideToolbar } = sideToolbarPlugin;
+// const plugins = [sideToolbarPlugin];
 
 // Custom overrides for "code" style.
 // const styleMap = {
@@ -291,7 +291,7 @@ const ScriptEditor = React.createClass({
               blockStyleFn={getBlockStyle}
               className="Editor"
               id="editor"
-              plugins={plugins}
+              // plugins={plugins}
             />
             {/* <SideToolbar /> */}
           </div>

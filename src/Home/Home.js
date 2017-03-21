@@ -1,6 +1,5 @@
 import React from 'react';
 import './Home.css';
-import axios from 'axios';
 import { Grid, Row, Col, Glyphicon } from 'react-bootstrap'
 
 export default function Home(props) {
