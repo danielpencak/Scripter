@@ -5,16 +5,62 @@
   overflow: scroll;
 }
 
-.container {
-  margin: 0 0 0 150px;
-}
-
 .ProjectDashboard .scriptEditor {
   padding: 0;
   height: 100%;
-  padding: 20px;
+  padding: 0 0 0 50px;
+  border-right: 1px solid #CCC;
 }
 
-.collaborators {
-  border-left: 1px solid #CCC;
+.ProjectDashboard.container {
+  margin-left: 100px;
+}
+
+.ProjectDashboard .projectTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  border-bottom: 1px solid #CCC;
+  height: 70px;
+}
+
+.ProjectDashboard .projectTitle h2, .ProjectDashboard .collabHeader h3 {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.ProjectDashboard .collabHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*margin-top: 20px;*/
+  height: 50px;
+  width: 100%;
+  border-bottom: 1px solid #CCC;
+}
+
+.ProjectDashboard .collaborators {
+  padding: 0;
+  border-right: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+}
+
+.ProjectDashboard .addCollab {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: green;
+}
+
+.ProjectDashboard .addCollab:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.ProjectDashboard .glyphicon-plus {
+  color: white;
 }

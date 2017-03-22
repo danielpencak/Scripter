@@ -55,6 +55,7 @@ export default class Parent extends Component {
           userImage: image,
           userBio: bio
         })
+        this.fetchUserProjects();
         browserHistory.push(`/dashboard`);
       })
       .catch(err => {
@@ -85,6 +86,7 @@ export default class Parent extends Component {
         signupConfirmPassword: '',
         userBio: bio
       })
+      this.fetchUserProjects();
       browserHistory.push(`/dashboard`);
     })
     .catch(err => {
@@ -99,7 +101,8 @@ export default class Parent extends Component {
           userId: '',
           userImage: '',
           firstName: '',
-          lastName: ''
+          lastName: '',
+          userProjects: []
         })
         browserHistory.push('/');
       })
@@ -110,23 +113,69 @@ export default class Parent extends Component {
 
   componentDidMount() {
     axios.get('/api/users')
-      .then(res => {
-        const { id, image, firstName, lastName } = res.data;
-        this.setState({
-          userId: id,
-          userImage: image,
-          firstName,
-          lastName
-        })
-        return axios.get(`/api/projects`)
-      })
       .then(({ data }) => {
-        this.setState({ userProjects: data });
+        const user = data;
+        this.setState({
+          userId: user.id,
+          userImage: user.image,
+          firstName: user.firstName,
+          lastName: user.lastName
+         });
+         this.fetchUserProjects();
       })
       .catch(err => {
         console.log(err);
       })
   }
+
+  fetchUserProjects() {
+    axios.get('/api/projects')
+      .then(({ data }) => {
+        const projects = data;
+        this.setState({
+          userProjects: projects
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  // componentDidMount() {
+  //   axios.get('/api/players')
+  //     .then(res => {
+  //       const { id, avatar, username } = res.data;
+  //       this.setState({
+  //         userId: id,
+  //         avatar,
+  //         username
+  //       })
+  //       return axios.get(`/api/players/${this.state.userId}/sessions`)
+  //     })
+  //     .then(({ data }) => {
+  //       this.setState({ playerSessions: data });
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     })
+  // }
+
+  // const { id, image, firstName, lastName } = res.data;
+  // this.setState({
+  //   userId: id,
+  //   userImage: image,
+  //   firstName,
+  //   lastName
+  // })
+  // componentDidMount() {
+  //   axios.get('/api/projects')
+  //     .then(({ data }) => {
+  //       this.setState({ userProjects: data });
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     })
+  // }
 
   render() {
     return (

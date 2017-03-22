@@ -136,10 +136,11 @@
   font-weight: normal;
   font-size: 16px;
   color: black;
-  /*padding: 10px 20px;*/
+  border: none;
+  padding: 0;
 }
 
-.RichEditor-pageNumber {
+.ScriptEditor .RichEditor-pageNumber {
   /*border-left: 5px solid #eee;*/
   /*color: #666;*/
   /*font-family: "Courier Prime Code";*/
@@ -150,16 +151,48 @@
   font-size: 16px;
   color: black;
   margin-left: 681.6px;
+  background-color: white !important;
+  border: none !important;
   /*margin-bottom: 12px;*/
   /*padding: 10px 20px;*/
 }
 
-/*.RichEditor-editor .public-DraftStyleDefault-pre {
-  background-color: rgba(0, 0, 0, 0.05);
-  font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
+.RichEditor-pageNumber span {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  max-width: 20px;
+}
+
+pre {
+  font-family: 'Courier Prime Code';
   font-size: 16px;
-  padding: 20px;
-}*/
+  font-weight: normal;
+  color: black;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+  /*word-wrap: normal;*/
+  /*word-break: normal;*/
+  /*height: 16px;*/
+  /*width: 20px;*/
+}
+
+pre.public-DraftStyleDefault-pre span {
+  height: 16px;
+  max-width: 20px;
+}
+
+pre.public-DraftStyleDefault-pre {
+  background-color: rgba(0, 0, 0, 0.00) !important;
+  border: none;
+  overflow-x: hidden;
+  /*font-family: 'Courier Prime Code';*/
+  font-size: 16px;
+  font-weight: normal;
+  color: black;
+  /*font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;*/
+  /*font-size: 16px;*/
+  /*padding: 20px;*/
+}
 
 .RichEditor-pageBreak {
   margin: 96px 0 0 0;

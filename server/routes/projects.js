@@ -37,6 +37,31 @@ router.get('/', authorize, (req, res, next) => {
     .catch(err => next(err));
 });
 
+router.get('/collaborators', authorize, (req, res, next) => {
+  knex('projects')
+  .innerJoin('users_projects', 'users_projects.project_id', 'projects.id')
+  .innerJoin('users', 'users_projects.user_id', 'users.id')
+  .where('projects.owner_id', req.claim.userId)
+  .whereNot('users.id', req.claim.userId)
+  .select([
+    'users.first_name AS user_first_name',
+    'users.last_name AS user_last_name',
+    'projects.name AS project_name',
+    'projects.id AS project_id',
+    'users.id AS user_id'
+  ])
+  .orderBy('users.last_name', 'ASC')
+  .then(users => res.send(camelizeKeys(users)))
+  .catch(err => next(err));
+});
+
+router.get('/:id', (req, res, next) => {
+  knex('projects')
+    .where('id', req.params.id)
+    .then(project => res.send(camelizeKeys(project[0])))
+    .catch(err => next(err));
+});
+
 router.post('/', authorize, ev(validations.post), (req, res, next) => {
   const { name } = req.body;
 
@@ -85,25 +110,56 @@ router.delete('/:id', authorize, (req, res, next) => {
     .catch(err => next(err));
 });
 
-router.get('/collaborators', authorize, (req, res, next) => {
+router.get('/:id/collaborators/', authorize, (req, res, next) => {
+  let collaborators;
+
   knex('projects')
+    .where('projects.id', req.params.id)
+    .whereNot('users.id', req.claim.userId)
     .innerJoin('users_projects', 'users_projects.project_id', 'projects.id')
     .innerJoin('users', 'users_projects.user_id', 'users.id')
-    .where('projects.owner_id', req.claim.userId)
-    .whereNot('users.id', req.claim.userId)
     .select([
       'users.first_name AS user_first_name',
       'users.last_name AS user_last_name',
-      'users.bio AS user_bio',
-      'projects.name AS project_name',
-      'projects.id AS project_id',
-      'users.id AS user_id'
+      'users.id AS user_id',
+      'projects.owner_id AS project_owner_id'
     ])
     .orderBy('users.last_name', 'ASC')
-    .then(users => res.send(camelizeKeys(users)))
+    .then(users => {
+      collaborators = camelizeKeys(users);
+
+      return knex('projects')
+        .innerJoin('users', 'projects.owner_id', 'users.id')
+        .select([
+          'users.first_name AS user_first_name',
+          'users.last_name AS user_last_name',
+          'users.id AS user_id'
+        ])
+        .where('projects.id', req.params.id)
+        .whereNot('users.id', req.claim.userId);
+    })
+    .then(users => {
+      res.send([...collaborators, ...camelizeKeys(users)]);
+    })
     .catch(err => next(err));
 });
 
-// router.get('/:id/collaborators/')
+// router.delete('/:id/remove/collaborator/:id')
+
+router.post('/:id/invite/collaborator', (req, res, next) => {
+  const { email } = req.body;
+
+  knex('users')
+    .where('users.email', email)
+    .first()
+    .then(user => {
+      return knex('users_projects')
+        .insert(decamelizeKeys({ projectId: req.params.id, userId: user.id }), '*');
+    })
+    .then(collaborator => {
+      return res.send(camelizeKeys(collaborator[0]));
+    })
+    .catch(err => next(err));
+});
 
 module.exports = router;

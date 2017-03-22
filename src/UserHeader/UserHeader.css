@@ -30,6 +30,10 @@
   font-weight: 200;
 }
 
+.UserHeader .name:hover {
+  transform: scale(1.11);
+}
+
 .UserHeader .logOut {
   position: absolute;
   z-index: 99;
@@ -41,7 +45,7 @@
 }
 
 .UserHeader .logOut:hover {
-  transform: scale(1.01);
+  transform: scale(1.11);
 }
 
 .UserHeader a {

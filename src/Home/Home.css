@@ -50,3 +50,7 @@
   border-top: 1px solid #CCC;
   padding: 10px 0;
 }
+
+.Home .container {
+  margin: 0 auto;
+}

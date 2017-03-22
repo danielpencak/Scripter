@@ -21,7 +21,7 @@ export default class UserDashboard extends Component {
     this.setState({ addProjectModalOpen: !this.state.addProjectModalOpen });
   }
 
-  componentDidMount() {
+  componentWillMount() {
     axios.get('/api/projects/collaborators')
       .then(({ data }) => {
         this.setState({ collaborators: data });
@@ -32,6 +32,7 @@ export default class UserDashboard extends Component {
   }
 
   render() {
+    console.log(this.state.collaborators);
     return (
       <div className="UserDashboard">
         <Grid>
