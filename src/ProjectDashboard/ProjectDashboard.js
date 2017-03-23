@@ -3,8 +3,10 @@ import axios from 'axios';
 import './ProjectDashboard.css';
 import { Grid, Row, Col, Glyphicon } from 'react-bootstrap';
 import ScriptEditor from '../ScriptEditor/ScriptEditor';
-import UserCard from '../UserCard/UserCard';
+import ProjectUserCards from '../ProjectUserCards/ProjectUserCards';
 import AddCollaboratorModal from '../AddCollaboratorModal/AddCollaboratorModal';
+import { browserHistory } from 'react-router';
+import EditProjectModal from '../EditProjectModal/EditProjectModal';
 
 export default class ProjectDashboard extends Component {
   constructor(props) {
@@ -14,13 +16,21 @@ export default class ProjectDashboard extends Component {
       collaborators: [],
       projectName: '',
       ownerId: '',
-      addCollaboratorModalOpen: false
+      addCollaboratorModalOpen: false,
+      editProjectModalOpen: false
     }
-    this.toggleModal = this.toggleModal.bind(this);
+    this.toggleAddCollaboratorModal = this.toggleAddCollaboratorModal.bind(this);
+    this.toggleEditProjectModal = this.toggleEditProjectModal.bind(this);
+    this.handleRemoveCollaborator = this.handleRemoveCollaborator.bind(this);
+    this.handleDeleteProject = this.handleDeleteProject.bind(this);
   }
 
-  toggleModal() {
+  toggleAddCollaboratorModal(target) {
     this.setState({ addCollaboratorModalOpen: !this.state.addCollaboratorModalOpen });
+  }
+
+  toggleEditProjectModal(target) {
+    this.setState({ editProjectModalOpen: !this.state.editProjectModalOpen });
   }
 
   componentDidMount() {
@@ -43,6 +53,29 @@ export default class ProjectDashboard extends Component {
       })
   }
 
+  handleRemoveCollaborator(userId) {
+    axios.delete(`/api/projects/${this.props.params.projectId}/remove/collaborator/${userId}`)
+      .then(() => {
+        return axios.get(`/api/projects/${this.props.params.projectId}/collaborators`)
+      })
+      .then(({ data }) => {
+        this.setState({ collaborators: data });
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  handleDeleteProject() {
+    axios.delete(`/api/projects/${this.props.params.projectId}`)
+      .then(() => {
+        browserHistory.push('/dashboard');
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
   render() {
     return (
       <Grid className="ProjectDashboard">
@@ -56,6 +89,22 @@ export default class ProjectDashboard extends Component {
                 {this.state.projectName}
               </h2>
             </div>
+            {
+              this.props.userId === this.state.ownerId
+              ?
+              <div className="deleteProjectButton" onClick={this.handleDeleteProject}>
+                Delete Project
+              </div>
+              : null
+            }
+            {
+              this.props.userId === this.state.ownerId
+              ?
+              <div className="editProjectButton" name="editProjectModalOpen" onClick={this.toggleEditProjectModal}>
+                Update Project
+              </div>
+              : null
+            }
             <div className="collabHeader">
               <h3>
                 <Glyphicon glyph="user" /> Collaborators
@@ -65,10 +114,14 @@ export default class ProjectDashboard extends Component {
               {
                 this.state.collaborators.map(collaborator => {
                   return (
-                    <UserCard
+                    <ProjectUserCards
                       userFirstName={collaborator.userFirstName}
                       userLastName={collaborator.userLastName}
+                      ownerId={this.state.ownerId}
                       key={collaborator.userId}
+                      loginUserId={this.props.userId}
+                      collabUserId={collaborator.userId}
+                      handleRemoveCollaborator={this.handleRemoveCollaborator}
                     />
                   )
                 })
@@ -78,7 +131,7 @@ export default class ProjectDashboard extends Component {
               {
                 this.props.userId === this.state.ownerId
                 ?
-                <div className="addCollab" name="addCollaboratorModalOpen" onClick={this.toggleModal}>
+                <div className="addCollab" name="addCollaboratorModalOpen" onClick={this.toggleAddCollaboratorModal}>
                   <Glyphicon glyph="plus" />
                 </div>
                 : null
@@ -90,7 +143,16 @@ export default class ProjectDashboard extends Component {
           this.state.addCollaboratorModalOpen
           ?
           <AddCollaboratorModal
-            toggleModal={this.toggleModal} projectId={this.props.params.projectId}
+            toggleAddCollaboratorModal={this.toggleAddCollaboratorModal} projectId={this.props.params.projectId}
+          />
+          : null
+        }
+        {
+          this.state.editProjectModalOpen
+          ?
+          <EditProjectModal
+            toggleEditProjectModal={this.toggleEditProjectModal}
+            projectId={this.props.params.projectId}
           />
           : null
         }

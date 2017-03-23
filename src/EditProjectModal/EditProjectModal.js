@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
-import './AddCollaboratorModal.css';
+import './EditProjectModal.css';
 import { Modal, Row, Col, ControlLabel } from 'react-bootstrap';
 import Validation from 'react-validation';
 import '../Validations';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-export default class AddCollaboratorModal extends Component {
+export default class AddProjectModal extends Component {
   constructor(props) {
     super(props);
-
     this.state= {
-      addEmail: ''
+      addProjectName: ''
     }
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleAddCollaboratorSubmit = this.handleAddCollaboratorSubmit.bind(this);
+    this.handleEditProjectSubmit = this.handleEditProjectSubmit.bind(this);
   }
 
-  handleAddCollaboratorSubmit(event) {
+  handleEditProjectSubmit(event) {
     event.preventDefault();
-    axios.post(`/api/projects/${this.props.projectId}/invite/collaborator`, { email: this.state.addEmail})
-      .then(res => {
-        this.props.toggleModal();
-        // axios.get(`/api/projects/${this.props.projectId}/collaborators`);
+    axios.patch(`/api/projects/${this.props.projectId}`, { name: this.state.editProjectName})
+      .then(() => {
+        this.props.toggleEditProjectModal();
       })
       .catch(err => {
         console.log(err);
@@ -31,7 +29,7 @@ export default class AddCollaboratorModal extends Component {
   }
 
   handleChange({ target }) {
-    this.setState({ addEmail: target.value});
+    this.setState({ editProjectName: target.value});
   }
 
   render() {
@@ -39,33 +37,33 @@ export default class AddCollaboratorModal extends Component {
       <div className="static-modal">
         <Modal.Dialog>
           <Modal.Body>
-            <h2>Create Project</h2>
+            <h2>Update Project</h2>
             <Validation.components.Form
               noValidate
-              onSubmit={this.handleAddCollaboratorSubmit}
+              onSubmit={this.handleEditProjectSubmit}
               >
                 <Row className="inputField">
                   <Col componentClass={ControlLabel} sm={2}>
-                    Collaborator Email
+                    Project Name
                   </Col>
                   <Col sm={10}>
                     <Validation.components.Input
                       validations={['required']}
-                      value={this.state.addEmail}
+                      value={this.state.addProjectName}
                       onChange={this.handleChange}
-                      name='addEmail'
+                      name='addProjectName'
                       type="text"
-                      placeholder="Collaborator Email"
+                      placeholder="Project Name"
                     />
                   </Col>
                 </Row>
                 <div>
                   <div className="buttons">
-                    <a name='addCollaboratorModalOpen' onClick={this.props.toggleAddCollaboratorModal}>
+                    <a name='addProjectModalOpen' onClick={this.props.toggleEditProjectModal}>
                       Close
                     </a>
                     <button type="submit">
-                      Add Collaborator
+                      Update Project
                     </button>
                   </div>
                 </div>

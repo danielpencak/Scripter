@@ -141,42 +141,6 @@ export default class Parent extends Component {
       })
   }
 
-  // componentDidMount() {
-  //   axios.get('/api/players')
-  //     .then(res => {
-  //       const { id, avatar, username } = res.data;
-  //       this.setState({
-  //         userId: id,
-  //         avatar,
-  //         username
-  //       })
-  //       return axios.get(`/api/players/${this.state.userId}/sessions`)
-  //     })
-  //     .then(({ data }) => {
-  //       this.setState({ playerSessions: data });
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     })
-  // }
-
-  // const { id, image, firstName, lastName } = res.data;
-  // this.setState({
-  //   userId: id,
-  //   userImage: image,
-  //   firstName,
-  //   lastName
-  // })
-  // componentDidMount() {
-  //   axios.get('/api/projects')
-  //     .then(({ data }) => {
-  //       this.setState({ userProjects: data });
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     })
-  // }
-
   render() {
     return (
       <div className="Parent">

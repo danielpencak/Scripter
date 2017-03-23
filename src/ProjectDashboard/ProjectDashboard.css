@@ -35,7 +35,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /*margin-top: 20px;*/
   height: 50px;
   width: 100%;
   border-bottom: 1px solid #CCC;
@@ -43,6 +42,7 @@
 
 .ProjectDashboard .collaborators {
   padding: 0;
+  height: 100%;
   border-right: 1px solid #CCC;
   border-bottom: 1px solid #CCC;
 }
@@ -63,4 +63,36 @@
 
 .ProjectDashboard .glyphicon-plus {
   color: white;
+}
+
+.ProjectDashboard .deleteProjectButton {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #CCC;
+  background-color: red;
+  color: white;
+}
+
+.ProjectDashboard .deleteProjectButton:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.ProjectDashboard .editProjectButton {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #CCC;
+  background-color: red;
+  color: white;
+}
+
+.ProjectDashboard .editProjectButton:hover {
+  cursor: pointer;
+  transform: scale(1.05);
 }

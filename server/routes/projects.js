@@ -38,21 +38,71 @@ router.get('/', authorize, (req, res, next) => {
 });
 
 router.get('/collaborators', authorize, (req, res, next) => {
+  let collaboratorIds = [];
+  let projects = [];
+
   knex('projects')
-  .innerJoin('users_projects', 'users_projects.project_id', 'projects.id')
-  .innerJoin('users', 'users_projects.user_id', 'users.id')
-  .where('projects.owner_id', req.claim.userId)
-  .whereNot('users.id', req.claim.userId)
-  .select([
-    'users.first_name AS user_first_name',
-    'users.last_name AS user_last_name',
-    'projects.name AS project_name',
-    'projects.id AS project_id',
-    'users.id AS user_id'
-  ])
-  .orderBy('users.last_name', 'ASC')
-  .then(users => res.send(camelizeKeys(users)))
-  .catch(err => next(err));
+    .where('projects.owner_id', req.claim.userId)
+    .select('projects.id AS project_id')
+    .then((projectIds) => {
+      projects = projectIds.map(projectId => {
+        return projectId.project_id;
+      });
+
+      return knex('users_projects')
+        .where('users_projects.user_id', req.claim.userId)
+        .select('users_projects.project_id AS project_id');
+    })
+    .then(projectIds => {
+      const newProjects = projectIds.map(projectId => {
+        return projectId.project_id;
+      });
+
+      projects = [...projects, ...newProjects];
+
+      return knex('projects')
+        .whereIn('projects.id', projects)
+        .select('projects.owner_id AS owner_id');
+    })
+    .then(ownerIds => {
+      const owners = ownerIds.map(ownerId => {
+        return ownerId.owner_id;
+      });
+
+      collaboratorIds = owners;
+
+      return knex('users_projects')
+        .whereIn('users_projects.project_id', projects)
+        .whereNot('users_projects.user_id', req.claim.userId)
+        .select('users_projects.user_id AS user_id');
+    })
+    .then(userIds => {
+      const users = userIds.map(userId => {
+        return userId.user_id;
+      });
+
+      collaboratorIds = [...collaboratorIds, ...users];
+      collaboratorIds = collaboratorIds.filter((collaboratorId, index, collaboratorIds) => {
+        return collaboratorIds.indexOf(collaboratorId) === index;
+      });
+
+      return knex('users')
+        // .innerJoin('users_projects', 'users_projects.user_id', 'users.id')
+        // .innerJoin('projects', 'projects.owner_id', 'users_projects.user_id')
+        .whereIn('users.id', collaboratorIds)
+        // .orWhere('projects.owner_id', req.claim.userId)
+        .whereNot('users.id', req.claim.userId)
+        .select([
+          'users.first_name AS user_first_name',
+          'users.last_name AS user_last_name',
+          // 'projects.name AS project_name',
+          // 'projects.id AS project_id',
+          'users.id AS user_id'
+        ])
+        .orderBy('users.last_name', 'ASC');
+    })
+    .then(users => res.send(camelizeKeys(users)))
+    .catch(err => next(err));
 });
 
 router.get('/:id', (req, res, next) => {
@@ -144,17 +194,38 @@ router.get('/:id/collaborators/', authorize, (req, res, next) => {
     .catch(err => next(err));
 });
 
-// router.delete('/:id/remove/collaborator/:id')
+router.delete('/:projectId/remove/collaborator/:collabId', (req, res, next) => {
+  knex('users_projects')
+    .del('*')
+    .where('users_projects.user_id', req.params.collabId)
+    .where('users_projects.project_id', req.params.projectId)
+    .then(collaborator => {
+      return res.send(camelizeKeys(collaborator[0]));
+    })
+    .catch(err => next(err));
+});
 
 router.post('/:id/invite/collaborator', (req, res, next) => {
   const { email } = req.body;
+  let newCollaborator;
 
   knex('users')
     .where('users.email', email)
     .first()
     .then(user => {
+      newCollaborator = user;
+
       return knex('users_projects')
-        .insert(decamelizeKeys({ projectId: req.params.id, userId: user.id }), '*');
+        .where('users_projects.user_id', newCollaborator.id)
+        .where('users_projects.project_id', req.params.id);
+    })
+    .then(row => {
+      if (row[0]) {
+        throw boom.create(400, 'User is already a collaborator');
+      }
+
+      return knex('users_projects')
+        .insert(decamelizeKeys({ projectId: req.params.id, userId: newCollaborator.id }), '*');
     })
     .then(collaborator => {
       return res.send(camelizeKeys(collaborator[0]));

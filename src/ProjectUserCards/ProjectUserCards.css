@@ -1,4 +1,4 @@
-.UserCard {
+.ProjectUserCard {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -7,19 +7,19 @@
   border-bottom: 1px solid #CCC;
 }
 
-.UserCard h3 {
+.ProjectUserCard h3 {
   font-size: 16px;
   margin: 0;
 }
 
-.UserCard .removeCollab {
+.ProjectUserCard .removeCollab {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   color: red;
 }
 
-.UserCard .removeCollab:hover {
+.ProjectUserCard .removeCollab:hover {
   cursor: pointer;
   transform: scale(1.25);
 }

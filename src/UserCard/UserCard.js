@@ -1,7 +1,10 @@
 import React from 'react';
 import './UserCard.css';
+import { Glyphicon } from 'react-bootstrap';
 
 export default function UserCard(props) {
+  console.log(props);
+  console.log(props.userId, props.ownerId);
   return (
       <div className="UserCard">
         <div className="userName">
