@@ -21,9 +21,11 @@ export default class AddCollaboratorModal extends Component {
   handleAddCollaboratorSubmit(event) {
     event.preventDefault();
     axios.post(`/api/projects/${this.props.projectId}/invite/collaborator`, { email: this.state.addEmail})
-      .then(res => {
-        this.props.toggleModal();
-        // axios.get(`/api/projects/${this.props.projectId}/collaborators`);
+      .then(() => {
+        return this.props.fetchProjectCollaborators();
+      })
+      .then(() => {
+        this.props.toggleAddCollaboratorModal();
       })
       .catch(err => {
         console.log(err);
@@ -39,7 +41,7 @@ export default class AddCollaboratorModal extends Component {
       <div className="static-modal">
         <Modal.Dialog>
           <Modal.Body>
-            <h2>Create Project</h2>
+            <h2>Add Collaborator</h2>
             <Validation.components.Form
               noValidate
               onSubmit={this.handleAddCollaboratorSubmit}

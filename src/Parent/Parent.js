@@ -30,6 +30,7 @@ export default class Parent extends Component {
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleSignupSubmit = this.handleSignupSubmit.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.fetchUserProjects = this.fetchUserProjects.bind(this);
   }
 
   toggleModal({ target }) {
@@ -135,6 +136,7 @@ export default class Parent extends Component {
         this.setState({
           userProjects: projects
         })
+        console.log('heelo');
       })
       .catch(err => {
         console.log(err);
@@ -142,13 +144,16 @@ export default class Parent extends Component {
   }
 
   render() {
+    console.log(this.state.userProjects);
     return (
       <div className="Parent">
         <Header userId={this.state.userId}
           toggleModal={this.toggleModal}
           firstName={this.state.firstName}
           lastName={this.state.lastName}
-          handleLogout={this.handleLogout} />
+          handleLogout={this.handleLogout}
+          fetchUserProjects={this.fetchUserProjects}
+        />
         <div className="page">
           {React.cloneElement(this.props.children,
             {
@@ -156,7 +161,8 @@ export default class Parent extends Component {
               firstName: this.state.firstName,
               lastName: this.state.lastName,
               userProjects: this.state.userProjects,
-              handleAddProjectSubmit: this.handleAddProjectSubmit
+              handleAddProjectSubmit: this.handleAddProjectSubmit,
+              fetchUserProjects: this.fetchUserProjects
             })}
         </div>
         {

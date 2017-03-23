@@ -32,7 +32,6 @@ export default class UserDashboard extends Component {
   }
 
   render() {
-    console.log(this.state.collaborators);
     return (
       <div className="UserDashboard">
         <Grid>

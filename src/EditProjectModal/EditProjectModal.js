@@ -21,6 +21,9 @@ export default class AddProjectModal extends Component {
     event.preventDefault();
     axios.patch(`/api/projects/${this.props.projectId}`, { name: this.state.editProjectName})
       .then(() => {
+        this.props.fetchProject();
+      })
+      .then(() => {
         this.props.toggleEditProjectModal();
       })
       .catch(err => {

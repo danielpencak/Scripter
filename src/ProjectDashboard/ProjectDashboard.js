@@ -23,6 +23,8 @@ export default class ProjectDashboard extends Component {
     this.toggleEditProjectModal = this.toggleEditProjectModal.bind(this);
     this.handleRemoveCollaborator = this.handleRemoveCollaborator.bind(this);
     this.handleDeleteProject = this.handleDeleteProject.bind(this);
+    this.fetchProjectCollaborators = this.fetchProjectCollaborators.bind(this);
+    this.fetchProject = this.fetchProject.bind(this);
   }
 
   toggleAddCollaboratorModal(target) {
@@ -37,10 +39,34 @@ export default class ProjectDashboard extends Component {
     axios.get(`/api/projects/${this.props.params.projectId}/collaborators`)
       .then(({ data }) => {
         this.setState({ collaborators: data });
+        this.fetchProject();
       })
       .catch(err => {
         console.log(err);
       })
+    // axios.get(`/api/projects/${this.props.params.projectId}`)
+    //   .then(({ data }) => {
+    //     this.setState({
+    //       projectName: data.name,
+    //       ownerId: data.ownerId
+    //     })
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   })
+  }
+
+  handleRemoveCollaborator(userId) {
+    axios.delete(`/api/projects/${this.props.params.projectId}/remove/collaborator/${userId}`)
+      .then(() => {
+      this.fetchProjectCollaborators();
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  fetchProject() {
     axios.get(`/api/projects/${this.props.params.projectId}`)
       .then(({ data }) => {
         this.setState({
@@ -53,11 +79,8 @@ export default class ProjectDashboard extends Component {
       })
   }
 
-  handleRemoveCollaborator(userId) {
-    axios.delete(`/api/projects/${this.props.params.projectId}/remove/collaborator/${userId}`)
-      .then(() => {
-        return axios.get(`/api/projects/${this.props.params.projectId}/collaborators`)
-      })
+  fetchProjectCollaborators() {
+    axios.get(`/api/projects/${this.props.params.projectId}/collaborators`)
       .then(({ data }) => {
         this.setState({ collaborators: data });
       })
@@ -68,6 +91,9 @@ export default class ProjectDashboard extends Component {
 
   handleDeleteProject() {
     axios.delete(`/api/projects/${this.props.params.projectId}`)
+      .then(() => {
+        this.props.fetchUserProjects();
+      })
       .then(() => {
         browserHistory.push('/dashboard');
       })
@@ -144,6 +170,7 @@ export default class ProjectDashboard extends Component {
           ?
           <AddCollaboratorModal
             toggleAddCollaboratorModal={this.toggleAddCollaboratorModal} projectId={this.props.params.projectId}
+            fetchProjectCollaborators={this.fetchProjectCollaborators}
           />
           : null
         }
@@ -153,6 +180,7 @@ export default class ProjectDashboard extends Component {
           <EditProjectModal
             toggleEditProjectModal={this.toggleEditProjectModal}
             projectId={this.props.params.projectId}
+            fetchProject={this.fetchProject}
           />
           : null
         }

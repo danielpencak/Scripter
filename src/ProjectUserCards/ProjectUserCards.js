@@ -2,9 +2,7 @@ import React from 'react';
 import './ProjectUserCards.css';
 import { Glyphicon } from 'react-bootstrap';
 
-export default function UserCard(props) {
-  console.log(props);
-  console.log(props.userId, props.ownerId);
+export default function ProjectUserCards(props) {
   return (
       <div className="UserCard">
         <div className="userName">
