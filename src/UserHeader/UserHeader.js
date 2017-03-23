@@ -22,8 +22,8 @@ export default class UserHeader extends Component {
         <div className="userIcon" onClick={ toggleMenu }>
           <Col className="name" smHidden xsHidden>
             {props.firstName} {props.lastName}
+            <Glyphicon glyph="chevron-down" className="chevron" />
           </Col>
-          <Glyphicon glyph="chevron-down" className="chevron" />
           {/* <img
             src={`https://robohash.org/${props.username}`}
             alt={`${props.username}'s Avatar`}

@@ -1,10 +1,10 @@
 import React from 'react';
-import './ProjectUserCards.css';
+import './OwnerProjectUserCards.css';
 import { Glyphicon } from 'react-bootstrap';
 
-export default function ProjectUserCards(props) {
+export default function OwnerProjectUserCards(props) {
   return (
-      <div className="ProjectUserCard">
+      <div className="OwnerProjectUserCard">
         <div className="userName">
           <h3>{props.userFirstName} {props.userLastName}</h3>
         </div>

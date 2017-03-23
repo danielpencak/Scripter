@@ -8,6 +8,7 @@ import AddCollaboratorModal from '../AddCollaboratorModal/AddCollaboratorModal';
 import { browserHistory } from 'react-router';
 import EditProjectModal from '../EditProjectModal/EditProjectModal';
 import DeleteProjectModal from '../DeleteProjectModal/DeleteProjectModal';
+import OwnerProjectUserCards from '../OwnerProjectUserCards/OwnerProjectUserCards';
 
 export default class ProjectDashboard extends Component {
   constructor(props) {
@@ -87,18 +88,34 @@ export default class ProjectDashboard extends Component {
 
   render() {
     return (
-      <Grid className="ProjectDashboard">
+      <div className="ProjectDashboard">
         <Row className="show-grid">
           <Col sm={10} className="scriptEditor">
+            <div className="projectTitle">
+              <div>
+                <h2>
+                  {this.state.projectName}
+                </h2>
+              </div>
+              <div>
+                {
+                  this.props.userId === this.state.ownerId
+                  ?
+                    <Glyphicon glyph="trash" onClick={this.toggleDeleteProjectModal}/>
+                  : null
+                }
+                {
+                  this.props.userId === this.state.ownerId
+                  ?
+                    <Glyphicon glyph="pencil" onClick={this.toggleEditProjectModal}/>
+                  : null
+                }
+              </div>
+            </div>
             <ScriptEditor dsRecord={this.props.params.projectId} />
           </Col>
           <Col sm={2} className="collaborators">
-            <div className="projectTitle">
-              <h2>
-                {this.state.projectName}
-              </h2>
-            </div>
-            {
+            {/* {
               this.props.userId === this.state.ownerId
               ?
               <div className="deleteProjectButton" onClick={this.toggleDeleteProjectModal}>
@@ -113,7 +130,7 @@ export default class ProjectDashboard extends Component {
                 Update Project
               </div>
               : null
-            }
+            } */}
             <div className="collabHeader">
               <h3>
                 <Glyphicon glyph="user" /> Collaborators
@@ -123,6 +140,18 @@ export default class ProjectDashboard extends Component {
               {
                 this.state.collaborators.map(collaborator => {
                   return (
+                    this.props.userId === this.state.ownerId
+                    ?
+                    <OwnerProjectUserCards
+                      userFirstName={collaborator.userFirstName}
+                      userLastName={collaborator.userLastName}
+                      ownerId={this.state.ownerId}
+                      key={collaborator.userId}
+                      loginUserId={this.props.userId}
+                      collabUserId={collaborator.userId}
+                      handleRemoveCollaborator={this.handleRemoveCollaborator}
+                    />
+                    :
                     <ProjectUserCards
                       userFirstName={collaborator.userFirstName}
                       userLastName={collaborator.userLastName}
@@ -177,7 +206,7 @@ export default class ProjectDashboard extends Component {
           />
           : null
         }
-      </Grid>
+      </div>
     );
   }
 }

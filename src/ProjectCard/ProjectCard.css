@@ -9,14 +9,13 @@
   flex-wrap: wrap;
   margin: 10px;
   padding: 10px;
-  background-color: #BBB;
+  background-color: navy;
   color: white;
   box-shadow: 1px 4px 5px #999;
 }
 
 .ProjectCard h2 {
   margin: 0;
-  /*font-size: 1.3vw;*/
   font-size: 22px;
 }
 

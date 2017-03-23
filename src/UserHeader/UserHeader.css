@@ -55,3 +55,12 @@
 .UserHeader li {
   text-align: left;
 }
+
+.UserHeader .glyphicon {
+  font-size: 10px;
+  margin-left: 5px;
+}
+
+.UserHeader .glyphicon:hover {
+  transform: scale(1.11);
+}

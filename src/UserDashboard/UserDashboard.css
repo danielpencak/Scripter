@@ -48,7 +48,9 @@
 .UserDashboard .collabHeader {
   display: flex;
   justify-content: center;
+  align-items: center;
   border-bottom: 1px solid #CCC;
+  height: 50px;
 }
 
 .UserDashboard .collabList {
@@ -66,7 +68,7 @@
   height: 200px;
   width: 200px;
   margin: 10px 0 0 10px;
-  background-color: #BBB;
+  background-color: navy;
   color: white;
   box-shadow: 1px 4px 5px #999;
 }
@@ -78,4 +80,8 @@
 
 .UserDashboard .glyphicon-plus {
   font-size: 60px;
+}
+
+.UserDashboard .collabHeader h3 {
+  margin: 0;
 }

@@ -1,0 +1,26 @@
+.OwnerProjectUserCard {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  border-bottom: 1px solid #CCC;
+}
+
+.OwnerProjectUserCard h3 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.OwnerProjectUserCard .removeCollab {
+  display: flex;
+  /*justify-content: flex-end;*/
+  /*margin-left: 20px;*/
+  align-items: center;
+  color: red;
+}
+
+.OwnerProjectUserCard .removeCollab:hover {
+  cursor: pointer;
+  transform: scale(1.25);
+}
