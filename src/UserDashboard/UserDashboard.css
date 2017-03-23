@@ -32,6 +32,12 @@
   height: 100%;
 }
 
+.UserDashboard a {
+  height: 200px;
+  width: 200px;
+  margin: 0 20px 20px 0;
+}
+
 .UserDashboard .collaborators {
   padding: 0;
   display: flex;

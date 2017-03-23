@@ -7,6 +7,7 @@ import ProjectUserCards from '../ProjectUserCards/ProjectUserCards';
 import AddCollaboratorModal from '../AddCollaboratorModal/AddCollaboratorModal';
 import { browserHistory } from 'react-router';
 import EditProjectModal from '../EditProjectModal/EditProjectModal';
+import DeleteProjectModal from '../DeleteProjectModal/DeleteProjectModal';
 
 export default class ProjectDashboard extends Component {
   constructor(props) {
@@ -17,14 +18,15 @@ export default class ProjectDashboard extends Component {
       projectName: '',
       ownerId: '',
       addCollaboratorModalOpen: false,
-      editProjectModalOpen: false
+      editProjectModalOpen: false,
+      deleteProjectModalOpen: false
     }
     this.toggleAddCollaboratorModal = this.toggleAddCollaboratorModal.bind(this);
     this.toggleEditProjectModal = this.toggleEditProjectModal.bind(this);
     this.handleRemoveCollaborator = this.handleRemoveCollaborator.bind(this);
-    this.handleDeleteProject = this.handleDeleteProject.bind(this);
     this.fetchProjectCollaborators = this.fetchProjectCollaborators.bind(this);
     this.fetchProject = this.fetchProject.bind(this);
+    this.toggleDeleteProjectModal = this.toggleDeleteProjectModal.bind(this);
   }
 
   toggleAddCollaboratorModal(target) {
@@ -33,6 +35,10 @@ export default class ProjectDashboard extends Component {
 
   toggleEditProjectModal(target) {
     this.setState({ editProjectModalOpen: !this.state.editProjectModalOpen });
+  }
+
+  toggleDeleteProjectModal(target) {
+    this.setState({ deleteProjectModalOpen: !this.state.deleteProjectModalOpen });
   }
 
   componentDidMount() {
@@ -44,16 +50,6 @@ export default class ProjectDashboard extends Component {
       .catch(err => {
         console.log(err);
       })
-    // axios.get(`/api/projects/${this.props.params.projectId}`)
-    //   .then(({ data }) => {
-    //     this.setState({
-    //       projectName: data.name,
-    //       ownerId: data.ownerId
-    //     })
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   })
   }
 
   handleRemoveCollaborator(userId) {
@@ -89,19 +85,6 @@ export default class ProjectDashboard extends Component {
       })
   }
 
-  handleDeleteProject() {
-    axios.delete(`/api/projects/${this.props.params.projectId}`)
-      .then(() => {
-        this.props.fetchUserProjects();
-      })
-      .then(() => {
-        browserHistory.push('/dashboard');
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }
-
   render() {
     return (
       <Grid className="ProjectDashboard">
@@ -118,7 +101,7 @@ export default class ProjectDashboard extends Component {
             {
               this.props.userId === this.state.ownerId
               ?
-              <div className="deleteProjectButton" onClick={this.handleDeleteProject}>
+              <div className="deleteProjectButton" onClick={this.toggleDeleteProjectModal}>
                 Delete Project
               </div>
               : null
@@ -181,6 +164,16 @@ export default class ProjectDashboard extends Component {
             toggleEditProjectModal={this.toggleEditProjectModal}
             projectId={this.props.params.projectId}
             fetchProject={this.fetchProject}
+          />
+          : null
+        }
+        {
+          this.state.deleteProjectModalOpen
+          ?
+          <DeleteProjectModal
+            toggleDeleteProjectModal={this.toggleDeleteProjectModal}
+            projectId={this.props.params.projectId}
+            fetchUserProjects={this.props.fetchUserProjects}
           />
           : null
         }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './UserHeader.css';
-import { Button, Col } from 'react-bootstrap'
+import { Button, Col, Glyphicon } from 'react-bootstrap'
 
 export default class UserHeader extends Component {
   constructor(props) {
@@ -23,6 +23,7 @@ export default class UserHeader extends Component {
           <Col className="name" smHidden xsHidden>
             {props.firstName} {props.lastName}
           </Col>
+          <Glyphicon glyph="chevron-down" className="chevron" />
           {/* <img
             src={`https://robohash.org/${props.username}`}
             alt={`${props.username}'s Avatar`}
