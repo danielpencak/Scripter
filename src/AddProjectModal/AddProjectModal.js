@@ -45,10 +45,10 @@ export default class AddProjectModal extends Component {
               onSubmit={this.handleAddProjectSubmit}
               >
                 <Row className="inputField">
-                  <Col componentClass={ControlLabel} sm={2}>
+                  <Col componentClass={ControlLabel} sm={3}>
                     Project Name
                   </Col>
-                  <Col sm={10}>
+                  <Col sm={9}>
                     <Validation.components.Input
                       validations={['required']}
                       value={this.state.addProjectName}

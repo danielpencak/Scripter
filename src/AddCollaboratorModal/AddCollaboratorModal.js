@@ -47,16 +47,16 @@ export default class AddCollaboratorModal extends Component {
               onSubmit={this.handleAddCollaboratorSubmit}
               >
                 <Row className="inputField">
-                  <Col componentClass={ControlLabel} sm={2}>
+                  <Col componentClass={ControlLabel} sm={3}>
                     Collaborator Email
                   </Col>
-                  <Col sm={10}>
+                  <Col sm={9}>
                     <Validation.components.Input
-                      validations={['required']}
+                      validations={['required', 'email']}
                       value={this.state.addEmail}
                       onChange={this.handleChange}
                       name='addEmail'
-                      type="text"
+                      type="email"
                       placeholder="Collaborator Email"
                     />
                   </Col>

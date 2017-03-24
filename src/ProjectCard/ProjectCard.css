@@ -24,7 +24,11 @@
 
 .ProjectCard h3 {
   font-size: 19px;
-  margin-top: 10px; 
+  margin-top: 10px;
+}
+
+.ProjectCard a {
+  text-decoration: none !important;
 }
 
 .ProjectCard .projectName {
