@@ -12,6 +12,7 @@
   height: 100%;
   margin: 0;
   overflow: scroll;
+  box-shadow: 6px 6px 4px #CCC;
 }
 
 .RichEditor-shotHeading {
@@ -222,22 +223,45 @@ pre.public-DraftStyleDefault-pre {
   align-items: center;
   min-height: 50px;
   background-color: white;
-  width: 150px;
+  width: 180px;
   height: 400px;
   border: 2px solid black;
+  box-shadow: 1px 3px 3px #CCC;
+  background-color: charcoal;
+  /*text-align: left;*/
+  /*padding: 30px;*/
 }
 
 .RichEditor-styleButton {
-  color: #999;
+  color: black;
   cursor: pointer;
   margin-right: 16px;
   padding: 2px 0;
   display: inline-block;
+  margin-right: 0;
+}
 
+.RichEditor-styleButton:hover {
+  transform: scale(1.25);
+}
+
+.RichEditor-activeButton:hover {
+  transform: scale(1);
 }
 
 .RichEditor-activeButton {
-  color: #5890ff;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 0;
+}
+
+.RichEditor-controls h2 {
+  margin: 0 auto;
+  text-decoration: underline;
+  font-size: 25px;
+  color: black;
+
 }
 
 .public-DraftEditor-content {
@@ -261,7 +285,7 @@ pre.public-DraftStyleDefault-pre {
 .ScriptEditor .controls {
   display: flex;
   align-items: flex-start;
-  width: 1150px;
+  width: 1200px;
 }
 
 

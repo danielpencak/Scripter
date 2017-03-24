@@ -7,9 +7,13 @@ export default function ProjectCard(props) {
   return(
     <div className="ProjectCard">
       <div>
-        <h2>{ projectName }</h2>
-        <h3>Created on:</h3>
-        <p>{ moment(projectCreatedAt).format('MMMM Do YYYY, h:mm a') }</p>
+        <div className="projectName">
+          <h2>{ projectName }</h2>
+        </div>
+        <div className="created">
+          <h3>Created on:</h3>
+          <p>{ moment(projectCreatedAt).format('MMMM Do YYYY, h:mm a') }</p>
+        </div>
       </div>
     </div>
   )

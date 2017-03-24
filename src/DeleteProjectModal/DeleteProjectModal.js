@@ -36,7 +36,7 @@ export default class DeleteProjectModal extends Component{
       <div className="static-modal">
         <Modal.Dialog>
           <Modal.Body>
-            <h2>Login</h2>
+            <h2>Delete Project</h2>
             <p>Are you sure you want to delete this project?</p>
             <div>
               <div className="buttons">

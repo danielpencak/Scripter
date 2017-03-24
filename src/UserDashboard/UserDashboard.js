@@ -37,10 +37,15 @@ export default class UserDashboard extends Component {
         <Grid>
           <Row className="show-grid">
             <Col sm={8} className="project">
-              {
-                this.props.userProjects.map(project => {
-                  return (
-                    <Link to={`/project/${project.projectId}`}                     key={project.projectId}>
+              <div className="projectsHeader">
+                <Glyphicon glyph="folder-open" />
+                <h2>Projects</h2>
+              </div>
+              <div className="projectList">
+                {
+                  this.props.userProjects.map(project => {
+                    return (
+                      <Link to={`/project/${project.projectId}`}                     key={project.projectId}>
                       <ProjectCard
                         projectName={project.projectName}
                         isOwner={this.props.userId === project.projectOwnerId}
@@ -55,12 +60,13 @@ export default class UserDashboard extends Component {
               <a className="addProject" name="addProjectModalOpen" onClick={this.toggleModal}>
                 <Glyphicon glyph="plus" />
               </a>
+              </div>
             </Col>
             <Col sm={4} className="collaborators">
               <div className="collabHeader">
-                <h3>
+                <h2>
                   <Glyphicon glyph="user" /> Collaborators
-                </h3>
+                </h2>
               </div>
               <div className="collabList">
                 {
