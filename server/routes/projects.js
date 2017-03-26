@@ -205,6 +205,17 @@ router.delete('/:projectId/remove/collaborator/:collabId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+router.delete('/:projectId/unsubscribe/collaborator', authorize, (req, res, next) => {
+  knex('users_projects')
+    .del('*')
+    .where('users_projects.project_id', req.params.projectId)
+    .where('users_projects.user_id', req.claim.userId)
+    .then(collaborator => {
+      return res.send(camelizeKeys(collaborator[0]));
+    })
+    .catch(err => next(err));
+});
+
 router.post('/:id/invite/collaborator', (req, res, next) => {
   const { email } = req.body;
   let newCollaborator;

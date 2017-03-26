@@ -28,6 +28,17 @@ export default class ProjectDashboard extends Component {
     this.fetchProjectCollaborators = this.fetchProjectCollaborators.bind(this);
     this.fetchProject = this.fetchProject.bind(this);
     this.toggleDeleteProjectModal = this.toggleDeleteProjectModal.bind(this);
+    this.handleUnsubscribe = this.handleUnsubscribe.bind(this);
+  }
+
+  handleUnsubscribe() {
+    axios.delete(`/api/projects/${this.props.params.projectId}/unsubscribe/collaborator`)
+      .then(() => {
+        this.props.fetchUserProjects();
+      })
+      .then(() => {
+        browserHistory.push('/dashboard');
+      })
   }
 
   toggleAddCollaboratorModal(target) {
@@ -171,6 +182,18 @@ export default class ProjectDashboard extends Component {
                 ?
                 <div className="addCollab" name="addCollaboratorModalOpen" onClick={this.toggleAddCollaboratorModal}>
                   <Glyphicon glyph="plus" />
+                </div>
+                : null
+              }
+            </div>
+            <div>
+              {
+                this.props.userId !== this.state.ownerId
+                ?
+                <div className="unsubscribe" onClick={this.handleUnsubscribe}>
+                  <h3>
+                    Leave Project
+                  </h3>
                 </div>
                 : null
               }

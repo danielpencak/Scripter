@@ -37,7 +37,7 @@
   flex-grow: 1;
   flex-wrap: wrap;
   height: 100px;
-  overflow: scroll;
+  overflow-y: scroll;
   /*width: 200px;*/
   /*padding: 10px;*/
 }
