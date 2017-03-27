@@ -8,6 +8,7 @@ import EditProjectModal from '../EditProjectModal/EditProjectModal';
 import OwnerProjectUserCards from '../OwnerProjectUserCards/OwnerProjectUserCards';
 import ProjectUserCards from '../ProjectUserCards/ProjectUserCards';
 import ScriptEditor from '../ScriptEditor/ScriptEditor';
+import UnsubscribeFromProjectModal from '../UnsubscribeFromProjectModal/UnsubscribeFromProjectModal.js';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
@@ -21,7 +22,8 @@ export default class ProjectDashboard extends Component {
       ownerId: '',
       addCollaboratorModalOpen: false,
       editProjectModalOpen: false,
-      deleteProjectModalOpen: false
+      deleteProjectModalOpen: false,
+      unsubscribeFromProjectModalOpen: false
     };
 
     this.toggleAddCollaboratorModal = this.toggleAddCollaboratorModal.bind(this);
@@ -30,21 +32,15 @@ export default class ProjectDashboard extends Component {
     this.fetchProjectCollaborators = this.fetchProjectCollaborators.bind(this);
     this.fetchProject = this.fetchProject.bind(this);
     this.toggleDeleteProjectModal = this.toggleDeleteProjectModal.bind(this);
-    this.handleUnsubscribe = this.handleUnsubscribe.bind(this);
-  }
-
-  handleUnsubscribe() {
-    axios.delete(`/api/projects/${this.props.params.projectId}/unsubscribe/collaborator`)
-      .then(() => {
-        this.props.fetchUserProjects();
-      })
-      .then(() => {
-        browserHistory.push('/dashboard');
-      });
+    this.toggleUnsubscribeFromProjectModal = this.toggleUnsubscribeFromProjectModal.bind(this);
   }
 
   toggleAddCollaboratorModal(target) {
     this.setState({ addCollaboratorModalOpen: !this.state.addCollaboratorModalOpen });
+  }
+
+  toggleUnsubscribeFromProjectModal(target) {
+    this.setState({ unsubscribeFromProjectModalOpen: !this.state.unsubscribeFromProjectModalOpen });
   }
 
   toggleEditProjectModal(target) {
@@ -182,7 +178,7 @@ export default class ProjectDashboard extends Component {
               {
                 this.props.userId !== this.state.ownerId
                 ?
-                <div className="unsubscribe" onClick={this.handleUnsubscribe}>
+                <div className="unsubscribe" onClick={this.toggleUnsubscribeFromProjectModal}>
                   <h3>
                     Leave Project
                   </h3>
@@ -216,6 +212,16 @@ export default class ProjectDashboard extends Component {
           ?
           <DeleteProjectModal
             toggleDeleteProjectModal={this.toggleDeleteProjectModal}
+            projectId={this.props.params.projectId}
+            fetchUserProjects={this.props.fetchUserProjects}
+          />
+          : null
+        }
+        {
+          this.state.unsubscribeFromProjectModalOpen
+          ?
+          <UnsubscribeFromProjectModal
+            toggleUnsubscribeFromProjectModal={this.toggleUnsubscribeFromProjectModal}
             projectId={this.props.params.projectId}
             fetchUserProjects={this.props.fetchUserProjects}
           />

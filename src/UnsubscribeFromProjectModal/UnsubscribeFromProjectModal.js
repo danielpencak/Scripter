@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars, no-console, arrow-parens, max-len */
-import './DeleteProjectModal.css';
+import './UnsubscribeFromProjectModal.css';
 import '../Validations';
 import { Button, Col, ControlLabel, Modal, Row } from 'react-bootstrap';
 import React, { Component } from 'react';
@@ -7,7 +7,7 @@ import Validation from 'react-validation';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-export default class DeleteProjectModal extends Component {
+export default class UnsubscribeFromProjectModal extends Component {
   constructor(props) {
     super(props);
 
@@ -15,20 +15,16 @@ export default class DeleteProjectModal extends Component {
       errors: {}
     };
 
-    this.handleDeleteProject = this.handleDeleteProject.bind(this);
+    this.handleUnsubscribe = this.handleUnsubscribe.bind(this);
   }
 
-  handleDeleteProject() {
-    axios.delete(`/api/projects/${this.props.projectId}`)
+  handleUnsubscribe() {
+    axios.delete(`/api/projects/${this.props.projectId}/unsubscribe/collaborator`)
       .then(() => {
         this.props.fetchUserProjects();
       })
       .then(() => {
-        this.props.toggleDeleteProjectModal();
         browserHistory.push('/dashboard');
-      })
-      .catch(err => {
-        console.log(err);
       });
   }
 
@@ -37,16 +33,16 @@ export default class DeleteProjectModal extends Component {
       <div className="static-modal">
         <Modal.Dialog>
           <Modal.Body>
-            <h2>Delete Project</h2>
-            <p>Are you sure you want to delete this project?</p>
+            <h2>Leave Project</h2>
+            <p>Are you sure you want to be removed from this project?</p>
             <div>
               <div className="buttons">
                 <a
-                  name="deleteProjectModalOpen" onClick={this.props.toggleDeleteProjectModal}>
+                  name="deleteProjectModalOpen" onClick={this.props.toggleUnsubscribeFromProjectModal}>
                   Close
                 </a>
-                <button onClick={this.handleDeleteProject}>
-                  Delete Project
+                <button onClick={this.handleUnsubscribe}>
+                  Leave Project
                 </button>
               </div>
             </div>
