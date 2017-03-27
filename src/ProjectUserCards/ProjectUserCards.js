@@ -1,6 +1,7 @@
-import React from 'react';
+/* eslint-disable no-unused-vars, max-len, operator-linebreak */
 import './ProjectUserCards.css';
 import { Glyphicon } from 'react-bootstrap';
+import React from 'react';
 
 export default function ProjectUserCards(props) {
   return (

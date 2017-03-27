@@ -1,19 +1,22 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { Grid, Row, Col, Glyphicon } from 'react-bootstrap';
+/* eslint-disable no-unused-vars, no-console, arrow-parens, operator-linebreak, max-len */
 import './UserDashboard.css';
+import { Col, Glyphicon, Grid, Row } from 'react-bootstrap';
+import React, { Component } from 'react';
+import AddProjectModal from '../AddProjectModal/AddProjectModal';
 import { Link } from 'react-router';
 import ProjectCard from '../ProjectCard/ProjectCard';
 import UserCard from '../UserCard/UserCard';
-import AddProjectModal from '../AddProjectModal/AddProjectModal';
+import axios from 'axios';
 
 export default class UserDashboard extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       collaborators: [],
-      addProjectModalOpen: false,
-    }
+      addProjectModalOpen: false
+    };
+
     this.toggleModal = this.toggleModal.bind(this);
   }
 
@@ -28,7 +31,7 @@ export default class UserDashboard extends Component {
       })
       .catch(err => {
         console.log(err);
-      })
+      });
   }
 
   render() {
@@ -45,20 +48,24 @@ export default class UserDashboard extends Component {
                 {
                   this.props.userProjects.map(project => {
                     return (
-                      <Link to={`/project/${project.projectId}`}                     key={project.projectId}>
-                      <ProjectCard
-                        projectName={project.projectName}
-                        isOwner={this.props.userId === project.projectOwnerId}
-                        projectUpdatedAt={project.projectUpdatedAt}
-                        projectCreatedAt={project.projectCreatedAt}
-                        projectId={project.projectId}
-                      />
-                    </Link>
-                  )
-                })
+                      <Link
+                        to={`/project/${project.projectId}`} key={project.projectId}>
+                        <ProjectCard
+                          projectName={project.projectName}
+                          isOwner={this.props.userId === project.projectOwnerId}
+                          projectUpdatedAt={project.projectUpdatedAt}
+                          projectCreatedAt={project.projectCreatedAt}
+                          projectId={project.projectId}
+                        />
+                      </Link>
+                    );
+                  })
               }
-              <a className="addProject" name="addProjectModalOpen" onClick={this.toggleModal}>
-                <Glyphicon glyph="plus" />
+              <a
+                className="addProject"
+                name="addProjectModalOpen"
+                onClick={this.toggleModal}>
+                  <Glyphicon glyph="plus" />
               </a>
               </div>
             </Col>
@@ -78,7 +85,7 @@ export default class UserDashboard extends Component {
                         userBio={collaborator.userBio}
                         key={collaborator.userId}
                       />
-                    )
+                    );
                   })
                 }
               </div>

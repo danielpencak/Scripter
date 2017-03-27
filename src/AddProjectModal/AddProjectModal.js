@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+/* eslint-disable no-unused-vars, arrow-parens, no-console, max-len */
 import './AddProjectModal.css';
-import { Modal, Row, Col, ControlLabel } from 'react-bootstrap';
-import Validation from 'react-validation';
 import '../Validations';
+import { Col, ControlLabel, Modal, Row } from 'react-bootstrap';
+import React, { Component } from 'react';
+import Validation from 'react-validation';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
@@ -10,9 +11,9 @@ export default class AddProjectModal extends Component {
   constructor(props) {
     super(props);
 
-    this.state= {
+    this.state = {
       addProjectName: ''
-    }
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleAddProjectSubmit = this.handleAddProjectSubmit.bind(this);
@@ -20,18 +21,19 @@ export default class AddProjectModal extends Component {
 
   handleAddProjectSubmit(event) {
     event.preventDefault();
-    axios.post('/api/projects', { name: this.state.addProjectName})
+    axios.post('/api/projects', { name: this.state.addProjectName })
       .then(res => {
         const { id } = res.data;
+
         browserHistory.push(`/project/${id}`);
       })
       .catch(err => {
         console.log(err);
-      })
+      });
   }
 
   handleChange({ target }) {
-    this.setState({ addProjectName: target.value});
+    this.setState({ addProjectName: target.value });
   }
 
   render() {
@@ -53,7 +55,7 @@ export default class AddProjectModal extends Component {
                       validations={['required']}
                       value={this.state.addProjectName}
                       onChange={this.handleChange}
-                      name='addProjectName'
+                      name="addProjectName"
                       type="text"
                       placeholder="Project Name"
                     />
@@ -61,7 +63,8 @@ export default class AddProjectModal extends Component {
                 </Row>
                 <div>
                   <div className="buttons">
-                    <a name='addProjectModalOpen' onClick={this.props.toggleModal}>
+                    <a
+                      name="addProjectModalOpen" onClick={this.props.toggleModal}>
                       Close
                     </a>
                     <button type="submit">
@@ -73,6 +76,6 @@ export default class AddProjectModal extends Component {
             </Modal.Body>
           </Modal.Dialog>
         </div>
-      );
+    );
   }
 }

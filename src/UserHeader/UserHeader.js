@@ -1,22 +1,24 @@
-import React, { Component } from 'react';
+/* eslint-disable no-unused-vars, operator-linebreak */
 import './UserHeader.css';
-import { Button, Col, Glyphicon } from 'react-bootstrap'
+import { Button, Col, Glyphicon } from 'react-bootstrap';
+import React, { Component } from 'react';
 
 export default class UserHeader extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.state = { menuIsOpen: false }
+    this.state = { menuIsOpen: false };
 
     this.toggleMenu = this.toggleMenu.bind(this);
   }
 
   toggleMenu() {
-    this.setState({ menuIsOpen: !this.state.menuIsOpen })
+    this.setState({ menuIsOpen: !this.state.menuIsOpen });
   }
 
   render() {
     const { props, state, toggleMenu } = this;
+
     return (
       <div className="UserHeader">
         <div className="userIcon" onClick={ toggleMenu }>
@@ -24,10 +26,6 @@ export default class UserHeader extends Component {
             {props.firstName} {props.lastName}
             <Glyphicon glyph="chevron-down" className="chevron" />
           </Col>
-          {/* <img
-            src={`https://robohash.org/${props.username}`}
-            alt={`${props.username}'s Avatar`}
-          /> */}
         </div>
         {
           state.menuIsOpen
@@ -35,9 +33,8 @@ export default class UserHeader extends Component {
           <Button
             onClick={props.handleLogout}
             className="logOut"
-            bsStyle="primary"
-          >
-            Logout
+            bsStyle="primary">
+              Logout
           </Button>
           : null
         }

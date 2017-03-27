@@ -1,4 +1,4 @@
-/* eslint-disable arrow-parens, max-len, new-cap*/
+/* eslint-disable arrow-parens, max-len, new-cap, no-shadow*/
 'use strict';
 
 const router = require('express').Router();
@@ -87,16 +87,11 @@ router.get('/collaborators', authorize, (req, res, next) => {
       });
 
       return knex('users')
-        // .innerJoin('users_projects', 'users_projects.user_id', 'users.id')
-        // .innerJoin('projects', 'projects.owner_id', 'users_projects.user_id')
         .whereIn('users.id', collaboratorIds)
-        // .orWhere('projects.owner_id', req.claim.userId)
         .whereNot('users.id', req.claim.userId)
         .select([
           'users.first_name AS user_first_name',
           'users.last_name AS user_last_name',
-          // 'projects.name AS project_name',
-          // 'projects.id AS project_id',
           'users.id AS user_id'
         ])
         .orderBy('users.last_name', 'ASC');

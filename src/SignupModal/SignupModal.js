@@ -1,16 +1,17 @@
-import React, { Component } from 'react';
-import { Modal, Row, Col, ControlLabel } from 'react-bootstrap';
+/* eslint-disable no-unused-vars, arrow-parens, id-length, no-return-assign */
 import '../SignupModal/SignupModal.css';
-import Validation from 'react-validation';
 import '../Validations';
+import { Col, ControlLabel, Modal, Row } from 'react-bootstrap';
+import React, { Component } from 'react';
+import Validation from 'react-validation';
 
-export default class SignupModal extends Component{
+export default class SignupModal extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       errors: {}
-    }
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -19,6 +20,7 @@ export default class SignupModal extends Component{
     event.preventDefault();
     const validations = this.form.validateAll();
     const errors = Object.keys(validations);
+
     if (!errors.length) {
       return this.props.handleSignupSubmit();
     }
@@ -26,6 +28,7 @@ export default class SignupModal extends Component{
 
   render() {
     const { props } = this;
+
     return (
       <div className="static-modal">
         <Modal.Dialog>
@@ -44,7 +47,7 @@ export default class SignupModal extends Component{
                     validations={['email', 'required']}
                     value={props.signupEmail}
                     onChange={props.handleChange}
-                    name='signupEmail'
+                    name="signupEmail"
                     type="email"
                     placeholder="Email"
                   />
@@ -59,7 +62,7 @@ export default class SignupModal extends Component{
                     validations={['required']}
                     value={props.signupFirstName}
                     onChange={props.handleChange}
-                    name='signupFirstName'
+                    name="signupFirstName"
                     type="text"
                     placeholder="First Name"
                   />
@@ -74,7 +77,7 @@ export default class SignupModal extends Component{
                     validations={['required']}
                     value={props.signupLastName}
                     onChange={props.handleChange}
-                    name='signupLastName'
+                    name="signupLastName"
                     type="text"
                     placeholder="Last Name"
                   />
@@ -89,7 +92,7 @@ export default class SignupModal extends Component{
                     validations={['required', 'passwordLength', 'password']}
                     onChange={props.handleChange}
                     value={props.signupPassword}
-                    name='signupPassword'
+                    name="signupPassword"
                     type="password"
                     placeholder="Password"
                   />
@@ -104,7 +107,7 @@ export default class SignupModal extends Component{
                     validations={['required', 'passwordLength', 'password']}
                     onChange={props.handleChange}
                     value={props.signupConfirmPassword}
-                    name='signupConfirmPassword'
+                    name="signupConfirmPassword"
                     type="password"
                     placeholder="Confirm Password"
                   />
@@ -118,14 +121,14 @@ export default class SignupModal extends Component{
                   <textarea
                     onChange={props.handleChange}
                     value={props.signupBio}
-                    name='signupBio'
+                    name="signupBio"
                     placeholder="Bio"
                   />
                 </Col>
               </Row>
               <div>
                 <div className="buttons">
-                  <a name='signupModalOpen' onClick={props.toggleModal}>
+                  <a name="signupModalOpen" onClick={props.toggleModal}>
                     Close
                   </a>
                   <button type="submit">

@@ -1,10 +1,12 @@
+/* eslint-disable no-unused-vars */
+import './ProjectCard.css';
 import React from 'react';
-import './ProjectCard.css'
-import moment from 'moment'
+import moment from 'moment';
 
 export default function ProjectCard(props) {
   const { projectName, projectCreatedAt } = props;
-  return(
+
+  return (
     <div className="ProjectCard">
       <div>
         <div className="projectName">
@@ -16,5 +18,5 @@ export default function ProjectCard(props) {
         </div>
       </div>
     </div>
-  )
+  );
 }

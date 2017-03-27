@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+/* eslint-disable no-unused-vars, no-unused-expressions, operator-linebreak, max-len */
 import './Header.css';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
+import React, { Component } from 'react';
 import UserHeader from '../UserHeader/UserHeader';
-import { browserHistory } from 'react-router';
 
 export default class Header extends Component {
   constructor(props) {
@@ -12,36 +12,41 @@ export default class Header extends Component {
   }
 
   handleClick() {
-    this.props.fetchUserProjects()
-      this.props.userId
-      ?
-      browserHistory.push('/dashboard')
-      : browserHistory.push('/')
+    this.props.fetchUserProjects();
+
+    this.props.userId
+    ?
+    browserHistory.push('/dashboard')
+    : browserHistory.push('/');
   }
 
   render() {
-    console.log(this.props);
-
     return (
       <nav className="Header">
-        <div onClick={this.handleClick} className="title">Scripter</div>
+        <div
+          onClick={this.handleClick}
+          className="title">
+            Scripter
+        </div>
         {
           this.props.userId
           ?
           <div className="account">
-            <UserHeader lastName={this.props.lastName} firstName={this.props.firstName} handleLogout={this.props.handleLogout} />
+            <UserHeader
+              lastName={this.props.lastName}
+              firstName={this.props.firstName} handleLogout={this.props.handleLogout} />
           </div>
           :
           <div className="loginButtons">
             <button
-              name='loginModalOpen'
+              name="loginModalOpen"
               onClick={this.props.toggleModal}>
-              Login
+                Login
             </button>
             <button
-              name='signupModalOpen'
+              name="signupModalOpen"
               onClick={this.props.toggleModal}>
-              Signup
+                Signup
             </button>
           </div>
         }

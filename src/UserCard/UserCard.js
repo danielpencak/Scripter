@@ -1,6 +1,6 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
 import './UserCard.css';
-import { Glyphicon } from 'react-bootstrap';
+import React from 'react';
 
 export default function UserCard(props) {
   return (

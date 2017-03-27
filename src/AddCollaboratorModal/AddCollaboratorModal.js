@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import './AddCollaboratorModal.css';
-import { Modal, Row, Col, ControlLabel } from 'react-bootstrap';
-import Validation from 'react-validation';
+/* eslint-disable max-len, no-unused-vars, no-console, arrow-parens*/
 import '../Validations';
+import './AddCollaboratorModal.css';
+import { Col, ControlLabel, Modal, Row } from 'react-bootstrap';
+import React, { Component } from 'react';
+import Validation from 'react-validation';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
@@ -10,9 +11,9 @@ export default class AddCollaboratorModal extends Component {
   constructor(props) {
     super(props);
 
-    this.state= {
+    this.state = {
       addEmail: ''
-    }
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleAddCollaboratorSubmit = this.handleAddCollaboratorSubmit.bind(this);
@@ -20,7 +21,7 @@ export default class AddCollaboratorModal extends Component {
 
   handleAddCollaboratorSubmit(event) {
     event.preventDefault();
-    axios.post(`/api/projects/${this.props.projectId}/invite/collaborator`, { email: this.state.addEmail})
+    axios.post(`/api/projects/${this.props.projectId}/invite/collaborator`, { email: this.state.addEmail })
       .then(() => {
         return this.props.fetchProjectCollaborators();
       })
@@ -29,11 +30,11 @@ export default class AddCollaboratorModal extends Component {
       })
       .catch(err => {
         console.log(err);
-      })
+      });
   }
 
   handleChange({ target }) {
-    this.setState({ addEmail: target.value});
+    this.setState({ addEmail: target.value });
   }
 
   render() {
@@ -55,7 +56,7 @@ export default class AddCollaboratorModal extends Component {
                       validations={['required', 'email']}
                       value={this.state.addEmail}
                       onChange={this.handleChange}
-                      name='addEmail'
+                      name="addEmail"
                       type="email"
                       placeholder="Collaborator Email"
                     />
@@ -63,8 +64,9 @@ export default class AddCollaboratorModal extends Component {
                 </Row>
                 <div>
                   <div className="buttons">
-                    <a name='addCollaboratorModalOpen' onClick={this.props.toggleAddCollaboratorModal}>
-                      Close
+                    <a
+                      name="addCollaboratorModalOpen" onClick={this.props.toggleAddCollaboratorModal}>
+                        Close
                     </a>
                     <button type="submit">
                       Add Collaborator
@@ -75,6 +77,6 @@ export default class AddCollaboratorModal extends Component {
             </Modal.Body>
           </Modal.Dialog>
         </div>
-      );
+    );
   }
 }

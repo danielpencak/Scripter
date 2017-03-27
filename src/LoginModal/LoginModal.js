@@ -1,20 +1,22 @@
-import React, { Component } from 'react';
-import { Modal, Row, Col, ControlLabel } from 'react-bootstrap';
+/* eslint-disable no-unused-vars */
 import './LoginModal.css';
-import Validation from 'react-validation';
 import '../Validations';
+import { Col, ControlLabel, Modal, Row } from 'react-bootstrap';
+import React, { Component } from 'react';
+import Validation from 'react-validation';
 
-export default class LoginModal extends Component{
+export default class LoginModal extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       errors: {}
-    }
+    };
   }
 
   render() {
     const { props } = this;
+
     return (
       <div className="static-modal">
         <Modal.Dialog>
@@ -33,7 +35,7 @@ export default class LoginModal extends Component{
                     validations={['required', 'email']}
                     value={props.loginEmail}
                     onChange={props.handleChange}
-                    name='loginEmail'
+                    name="loginEmail"
                     type="email"
                     placeholder="Email"
                   />
@@ -48,7 +50,7 @@ export default class LoginModal extends Component{
                     validations={['required', 'passwordLength']}
                     onChange={props.handleChange}
                     value={props.loginPassword}
-                    name='loginPassword'
+                    name="loginPassword"
                     type="password"
                     placeholder="Password"
                   />
@@ -56,8 +58,10 @@ export default class LoginModal extends Component{
               </Row>
               <div>
                 <div className="buttons">
-                  <a name='loginModalOpen' onClick={props.toggleModal}>
-                    Close
+                  <a
+                    name="loginModalOpen"
+                    onClick={props.toggleModal}>
+                      Close
                   </a>
                   <button type="submit">
                     Sign in
@@ -69,6 +73,5 @@ export default class LoginModal extends Component{
         </Modal.Dialog>
       </div>
     );
-
   }
 }
