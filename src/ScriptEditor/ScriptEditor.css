@@ -1,14 +1,10 @@
 .RichEditor-root {
   background: #fff;
-  /*border: 1px solid #ddd;*/
   font-family: "Courier Prime Code";
   font-size: 16px;
-  /*padding: 15px;*/
   display: flex;
   flex-direction: column;
-  /*justify-content: flex-start;*/
   align-items: center;
-  /*max-width: 660px;*/
   height: 100%;
   margin: 0;
   overflow: scroll;
@@ -22,54 +18,42 @@
   font-size: 16px;
   color: black;
   font-weight: normal;
-  /*font-style: normal;*/
   margin-bottom: 16px;
 }
 
 .RichEditor-fadeIn {
   margin-left: 1.7in;
   margin-right: 105.6px;
-  /*margin-top: 32px;*/
   font-size: 16px;
   color: black;
   font-weight: normal;
-  /*font-style: normal;*/
   margin-bottom: 16px;
   margin-top: 1in;
 }
 
 .RichEditor-transition {
   margin-left: 576px;
-  /*margin-right: 105.6px;*/
-  /*margin-top: 32px;*/
   font-size: 16px;
   color: black;
   font-weight: normal;
-  /*font-style: normal;*/
   margin-bottom: 16px;
-  /*margin-top: 16px;*/
 }
 
 .RichEditor-dialogue {
   margin-left: 259.2px;
   margin-right: 230.4px;
-  /*margin-top: 32px;*/
   font-size: 16px;
   color: black;
   font-weight: normal;
-  /*font-style: normal;*/
   margin-bottom: 16px;
   margin-top: 0;
 }
 
 .RichEditor-characterName {
   margin-left: 4.1in;
-  /*margin-right: 230.4px;*/
-  /*margin-top: 32px;*/
   font-size: 16px;
   color: black;
   font-weight: normal;
-  /*font-style: normal;*/
   margin-bottom: 0;
   margin-top: 0;
 }
@@ -77,61 +61,27 @@
 .RichEditor-parenthetical {
   margin-left: 326.4px;
   margin-right: 297.6px;
-  /*margin-top: 32px;*/
   font-size: 16px;
   font-weight: normal;
   font-size: 16px;
   color: black;
-  /*font-style: normal;*/
   margin-bottom: 0;
   margin-top: 0;
 }
 
 .RichEditor-root .DraftEditor-root {
-  /*min-height: 1056px;*/
-  /*max-height: 1056px;*/
   width: 8.5in;
-  /*padding-top: 30px;*/
-  /*padding-bottom: 60px;*/
 }
 
 .RichEditor-editor {
-  /*border-top: 1px solid #ddd;*/
   cursor: text;
-  /*color: black;*/
-  /*font-weight: normal;*/
-  /*font-size: 16px;*/
-  /*margin-top: 10px;*/
 }
 
 .public-DraftStyleDefault-block.public-DraftStyleDefault-ltr span {
   background-color: white !important;
 }
 
-/*.RichEditor-editor .public-DraftEditorPlaceholder-root,
-.RichEditor-editor .public-DraftEditor-content {
-  margin: 0 -15px -15px;
-  padding: 15px;
-}*/
-
-/*.RichEditor-editor .public-DraftEditor-content {
-  min-height: 100px;
-}*/
-
-/*.RichEditor-hidePlaceholder .public-DraftEditorPlaceholder-root {
-  display: none;
-}*/
-
-/*.RichEditor-editor .RichEditor-direction {
-  margin-left: 163px;
-  margin-right: 105px;
-}*/
-
 .RichEditor-direction {
-  /*border-left: 5px solid #eee;*/
-  /*color: #666;*/
-  /*font-family: "Courier Prime Code";*/
-  /*font-style: italic;*/
   margin-left: 163.2px;
   margin-right: 105.6px;
   font-weight: normal;
@@ -142,10 +92,6 @@
 }
 
 .ScriptEditor .RichEditor-pageNumber {
-  /*border-left: 5px solid #eee;*/
-  /*color: #666;*/
-  /*font-family: "Courier Prime Code";*/
-  /*font-style: italic;*/
   margin-top: 48px;
   margin-bottom: 16px;
   font-weight: normal;
@@ -154,8 +100,6 @@
   margin-left: 681.6px;
   background-color: white !important;
   border: none !important;
-  /*margin-bottom: 12px;*/
-  /*padding: 10px 20px;*/
 }
 
 .RichEditor-pageNumber span {
@@ -171,10 +115,6 @@ pre {
   color: black;
   overflow-x: hidden !important;
   overflow-y: hidden !important;
-  /*word-wrap: normal;*/
-  /*word-break: normal;*/
-  /*height: 16px;*/
-  /*width: 20px;*/
 }
 
 pre.public-DraftStyleDefault-pre span {
@@ -186,13 +126,9 @@ pre.public-DraftStyleDefault-pre {
   background-color: rgba(0, 0, 0, 0.00) !important;
   border: none;
   overflow-x: hidden;
-  /*font-family: 'Courier Prime Code';*/
   font-size: 16px;
   font-weight: normal;
   color: black;
-  /*font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;*/
-  /*font-size: 16px;*/
-  /*padding: 20px;*/
 }
 
 .RichEditor-pageBreak {
@@ -202,20 +138,10 @@ pre.public-DraftStyleDefault-pre {
   height: 0;
 }
 
-/*.pageBreak {
-  margin-top: 48px;
-  margin-bottom: 16px;
-  font-weight: normal;
-  font-size: 16px;
-  color: black;
-  margin-left: 681.6px;
-}*/
-
 .RichEditor-controls {
   font-family: 'Helvetica', sans-serif;
   font-size: 16px;
   margin-bottom: 5px;
-  user-select: none;
   display: flex;
   position: fixed;
   flex-direction: column;
@@ -227,9 +153,6 @@ pre.public-DraftStyleDefault-pre {
   height: 400px;
   border: 2px solid black;
   box-shadow: 1px 3px 3px #CCC;
-  background-color: charcoal;
-  /*text-align: left;*/
-  /*padding: 30px;*/
 }
 
 .RichEditor-styleButton {
@@ -267,8 +190,6 @@ pre.public-DraftStyleDefault-pre {
 .public-DraftEditor-content {
   border: 1px solid black;
   min-height: 11in;
-  /*padding-top: 48px;*/
-  /*padding-bottom: 60px;*/
 }
 
 .RichEditor-root {
@@ -278,7 +199,6 @@ pre.public-DraftStyleDefault-pre {
 
 .ScriptEditor {
   display: flex;
-  /*align-items: center;*/
   justify-content: center;
 }
 
@@ -287,7 +207,3 @@ pre.public-DraftStyleDefault-pre {
   align-items: flex-start;
   width: 1200px;
 }
-
-
-/*Contact GitHub API Training Shop Blog About*/
-/*© 2017 GitHub, Inc. Terms Privacy Security Status*/
