@@ -50,9 +50,9 @@ The biggest challenge during development was working with the editor. I am curre
 
 1. Add page breaks to the editor
 
-    Consider using a different editor
+    + Consider using a different editor
 
-    Build an editor from scratch
+    + Build an editor from scratch
 
 2. Fix the unsafe script issue
 
@@ -60,19 +60,19 @@ The biggest challenge during development was working with the editor. I am curre
 
 4. Add outlining feature
 
-    Give the user the ability to outline the script with notecards
+    + Give the user the ability to outline the script with notecards
 
-    Make the notecards visible as they work on the script
+    + Make the notecards visible as they work on the script
 
 5. Add live chat feature
 
-    Use socket.io to provide the user with a live chat between all the collaborators of a project on both the project page and outline page
+    + Use socket.io to provide the user with a live chat between all the collaborators of a project on both the project page and outline page
 
 6. Allow the user to save the script
 
-    Currently the scripts are retrieved using a custom dsRecord name
+    + Currently the scripts are retrieved using a custom dsRecord name
 
-    Looking to add storage on deepstream.io as well as in my database
+    + Looking to add storage on deepstream.io as well as in my database
 
 7. With the last several versions of the script saved allow the user to go through a history of all the versions
 
