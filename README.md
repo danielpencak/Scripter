@@ -33,8 +33,6 @@ The biggest challenge during development was working with the editor. I am curre
 
 ##Features
 
-<img src="/public/img/video-thumbnail.png">
-
 ###Tech Stack
 
 1. React
