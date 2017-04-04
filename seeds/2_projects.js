@@ -7,15 +7,15 @@ exports.seed = knex => {
       return knex('projects').insert([
         {
           id: 1,
-          name: 'Untitled Sci-fi script',
+          name: 'Untitled Sci-fi Script',
           owner_id: 1
         }, {
           id: 2,
-          name: 'Untitled Action script',
+          name: 'Broken Doors',
           owner_id: 1
         }, {
           id: 3,
-          name: 'Broken Doors',
+          name: 'Untitled Action Script',
           owner_id: 1
         }, {
           id: 4,
