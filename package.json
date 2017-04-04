@@ -11,7 +11,6 @@
   "proxy": "http://localhost:3001",
   "dependencies": {
     "axios": "^0.15.3",
-    "bcrypt-as-promised": "^1.1.0",
     "body-parser": "^1.17.1",
     "boom": "^4.2.0",
     "cookie-parser": "^1.4.3",
