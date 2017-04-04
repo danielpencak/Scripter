@@ -1,4 +1,4 @@
-/* eslint-disable arrow-parens, camelcase, max-len */
+/* eslint-disable arrow-parens, camelcase, max-len, strict */
 'use strict';
 
 exports.seed = knex => {
@@ -7,51 +7,45 @@ exports.seed = knex => {
       return knex('users').insert([
         {
           id: 1,
-          first_name: 'Carl',
-          last_name: 'Steve',
-          hashed_password: '$2a$12$i.bFhnaoRY9n86.6eabrK.DICXmu1CDyvYmwo.cnBn51UISeBTOIq',
-          email: 'banana@pudding.com',
-          bio: 'I\'m just a banana who enjoys pudding'
+          first_name: 'Daniel',
+          last_name: 'Pencak',
+          hashed_password: '$2a$12$Imn5Hx/ZYq6ZNccnZsIC8.NfTxRT85UqRnOY9ECCdhNxhbpRYFTlq',
+          email: 'danielpencak@email.com'
         },
         {
           id: 2,
-          first_name: 'Harry',
-          last_name: 'Potter',
-          hashed_password: '$2a$12$i.bFhnaoRY9n86.6eabrK.DICXmu1CDyvYmwo.cnBn51UISeBTOIq',
-          email: 'pudding@banana.com',
-          bio: 'I\'m just a pudding who enjoys banana'
+          first_name: 'Scott',
+          last_name: 'Hurlow',
+          hashed_password: '$2a$12$Imn5Hx/ZYq6ZNccnZsIC8.NfTxRT85UqRnOY9ECCdhNxhbpRYFTlq',
+          email: 'hurlow@email.com'
         },
         {
           id: 3,
           first_name: 'Mark',
           last_name: 'Carter',
-          hashed_password: '$2a$12$i.bFhnaoRY9n86.6eabrK.DICXmu1CDyvYmwo.cnBn51UISeBTOIq',
-          email: 'smurf@what.com',
-          bio: 'I\'m just carl'
+          hashed_password: '$2a$12$Imn5Hx/ZYq6ZNccnZsIC8.NfTxRT85UqRnOY9ECCdhNxhbpRYFTlq',
+          email: 'carter@email.com'
         },
         {
           id: 4,
           first_name: 'Peter',
           last_name: 'Gabriel',
-          hashed_password: '$2a$12$i.bFhnaoRY9n86.6eabrK.DICXmu1CDyvYmwo.cnBn51UISeBTOIq',
-          email: 'text@what.com',
-          bio: 'I\'m just carl'
+          hashed_password: '$2a$12$Imn5Hx/ZYq6ZNccnZsIC8.NfTxRT85UqRnOY9ECCdhNxhbpRYFTlq',
+          email: 'gabriel@email.com'
         },
         {
           id: 5,
           first_name: 'Dallas',
           last_name: 'Howard',
-          hashed_password: '$2a$12$i.bFhnaoRY9n86.6eabrK.DICXmu1CDyvYmwo.cnBn51UISeBTOIq',
-          email: 'dallas@what.com',
-          bio: 'I\'m just carl'
+          hashed_password: '$2a$12$Imn5Hx/ZYq6ZNccnZsIC8.NfTxRT85UqRnOY9ECCdhNxhbpRYFTlq',
+          email: 'dallas@email.com'
         },
         {
           id: 6,
           first_name: 'Steve',
           last_name: 'Williams',
-          hashed_password: '$2a$12$i.bFhnaoRY9n86.6eabrK.DICXmu1CDyvYmwo.cnBn51UISeBTOIq',
-          email: 'papasmurf@what.com',
-          bio: 'I\'m just carl'
+          hashed_password: '$2a$12$Imn5Hx/ZYq6ZNccnZsIC8.NfTxRT85UqRnOY9ECCdhNxhbpRYFTlq',
+          email: 'stevenwilliams@email.com'
         }
       ]);
     })

@@ -1,4 +1,4 @@
-/* eslint-disable camelcase, arrow-parens */
+/* eslint-disable camelcase, arrow-parens, strict */
 'use strict';
 
 exports.seed = knex => {
@@ -12,7 +12,7 @@ exports.seed = knex => {
         }, {
           id: 2,
           user_id: 2,
-          project_id: 1
+          project_id: 3
         }, {
           id: 3,
           user_id: 3,

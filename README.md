@@ -3,7 +3,11 @@ Created by: Daniel Pencak
 
 ## Alert
 
-Currently, I have only tested the application in Google Chrome. Due to the use of Deepstream, Chrome throws up an alert for unsafe scripts. To remedy this at this stage, click on the shield in the URL bar and click "load unsafe script". I have a future goal to resolve this issue.
+Currently, I am only targetting modern browsers.
+
+There is an issue currently where Google Chrome is flagging my application as unsafe. This is due to the way I deployed my application on Heroku. For this application I have created two Heroku applications. One for the application itself and the other for the Deepstream server. The main Heroku application is connecting to the Deepstream Heroku application which is brought in as an external source through port 80. Google Chrome notices this and flags it. Long term fixes include proxying on a single Heroku server or deploying on a completely different platform.
+
+To remedy this at this stage, click on the shield in the URL bar and click "load unsafe scripts".
 
 ## Project Description
 

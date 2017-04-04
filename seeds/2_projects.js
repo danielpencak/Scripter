@@ -1,4 +1,4 @@
-/* eslint-disable arrow-parens, camelcase, max-len */
+/* eslint-disable arrow-parens, camelcase, max-len, strict */
 'use strict';
 
 exports.seed = knex => {
@@ -15,7 +15,7 @@ exports.seed = knex => {
           owner_id: 1
         }, {
           id: 3,
-          name: 'Back Off',
+          name: 'Broken Doors',
           owner_id: 1
         }, {
           id: 4,
