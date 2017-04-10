@@ -33,7 +33,7 @@ The biggest challenge during development was working with the editor. I am curre
 
 ##Features
 
-<img src="/public/img/video-thumbnail.png">
+[<img src="/public/images/video-thumbnail.png">](https://vimeo.com/212622363)
 
 ###Tech Stack
 
