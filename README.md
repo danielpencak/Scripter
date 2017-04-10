@@ -39,6 +39,8 @@ The biggest challenge during development was working with the editor. I am curre
 
 [<img src="/public/assets/images/video-thumbnail.png">](https://vimeo.com/212622363)
 
+Click here to watch a video demo of the app.
+
 ### Tech Stack
 
 1. React
