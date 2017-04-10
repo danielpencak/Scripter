@@ -35,7 +35,7 @@ Kyle is looking to write a screenplay with another writer, who he went to school
 
 The biggest challenge during development was working with the editor. I am currently using Draft.js and it works well but there are some limitations. For example, there are no page breaks. This is something I am looking to add in the future and most likely I will have to use a different editor or build my own from scratch.
 
-##Features
+## Features
 
 [<img src="/public/images/video-thumbnail.png">](https://vimeo.com/212622363)
 
